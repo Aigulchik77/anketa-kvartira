@@ -98,7 +98,7 @@ section:nth-of-type(7){animation-delay:.53s}
 
 /* ---------- inputs ---------- */
 input[type=text],input[type=tel],input[type=number],input[type=date],
-select,textarea{
+input[type=month],select,textarea{
   width:100%;font-family:inherit;font-size:15px;color:var(--ink);
   background:var(--paper);border:1.5px solid var(--line);
   border-radius:10px;padding:12px 14px;transition:.2s;
@@ -543,7 +543,185 @@ input.err,select.err{border-color:var(--red);background:#fdf1ef}
 
   <!-- VII -->
   <section>
-    <div class="s-head"><span class="s-num">VII</span><span class="s-title">Дополнительно</span></div>
+    <div class="s-head"><span class="s-num">VII</span><span class="s-title">Работа и семья</span></div>
+    <div class="q row">
+      <div>
+        <label class="q-label" for="city">Из какого вы города? *</label>
+        <input type="text" id="city" placeholder="г. Алматы">
+      </div>
+      <div>
+        <label class="q-label" for="reg">Где прописка? *</label>
+        <input type="text" id="reg" placeholder="г. Алматы, ул. ..., дом ...">
+      </div>
+    </div>
+    <div class="q">
+      <span class="q-label">Работаете ли вы? *</span>
+      <div class="choices">
+        <label class="choice"><input type="radio" name="work" value="Да" data-cond="workYes"><span>Да</span></label>
+        <label class="choice"><input type="radio" name="work" value="Нет"><span>Нет</span></label>
+      </div>
+      <div class="cond" id="workYes">
+        <div class="cond-inner">
+          <div class="row">
+            <div>
+              <label class="q-label" for="jobPlace">Где место работы? *</label>
+              <input type="text" id="jobPlace" placeholder="ООО «...», должность">
+            </div>
+            <div>
+              <label class="q-label">С места работы идут ли пенсионные отчисления? *</label>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="pension" value="Да"><span>Да</span></label>
+                <label class="choice"><input type="radio" name="pension" value="Нет"><span>Нет</span></label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="q">
+      <span class="q-label">Есть ли зарегистрированный брак (ЗАГС)? *</span>
+      <div class="choices">
+        <label class="choice"><input type="radio" name="zag" value="Да" data-cond="zagYes"><span>Да</span></label>
+        <label class="choice"><input type="radio" name="zag" value="Нет"><span>Нет</span></label>
+      </div>
+      <div class="cond" id="zagYes">
+        <div class="cond-inner">
+          <div class="row">
+            <div>
+              <label class="q-label">С работы супруга(и) идут ли пенсионные отчисления? *</label>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="spPension" value="Да"><span>Да</span></label>
+                <label class="choice"><input type="radio" name="spPension" value="Нет"><span>Нет</span></label>
+              </div>
+            </div>
+            <div>
+              <label class="q-label" for="spIncome">Доход супруга(и), ₸/мес</label>
+              <input type="number" id="spIncome" min="0" placeholder="200 000">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="q row">
+      <div>
+        <label class="q-label" for="kids">Сколько у вас детей? *</label>
+        <select id="kids">
+          <option value="">— выберите —</option>
+          <option>0</option><option>1</option><option>2</option><option>3</option>
+          <option>4</option><option>5</option><option>6 и более</option>
+        </select>
+      </div>
+      <div>
+        <label class="q-label" for="kids18">Сколько детей до 18 лет? *</label>
+        <select id="kids18">
+          <option value="">— выберите —</option>
+          <option>0</option><option>1</option><option>2</option><option>3</option>
+          <option>4</option><option>5</option><option>6 и более</option>
+        </select>
+      </div>
+    </div>
+    <div class="q">
+      <span class="q-label">Стоите ли в очереди на жильё? *</span>
+      <div class="choices">
+        <label class="choice"><input type="radio" name="queue" value="Да" data-cond="queueYes"><span>Да</span></label>
+        <label class="choice"><input type="radio" name="queue" value="Нет"><span>Нет</span></label>
+      </div>
+      <div class="cond" id="queueYes">
+        <div class="cond-inner">
+          <div class="row">
+            <div>
+              <label class="q-label" for="queueYear">В каком году встали? *</label>
+              <input type="number" id="queueYear" min="1990" max="2030" placeholder="2019">
+            </div>
+            <div>
+              <label class="q-label" for="queueWhere">В какой очереди</label>
+              <input type="text" id="queueWhere" placeholder="Молодая семья, многодетные...">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIII -->
+  <section>
+    <div class="s-head"><span class="s-num">VIII</span><span class="s-title">Карты, ломбард, ИП</span></div>
+    <div class="q">
+      <span class="q-label">Есть ли кредитная карта (Kaspi Red, другой банк)? *</span>
+      <div class="choices">
+        <label class="choice"><input type="radio" name="ccard" value="Да" data-cond="ccardYes"><span>Да</span></label>
+        <label class="choice"><input type="radio" name="ccard" value="Нет"><span>Нет</span></label>
+      </div>
+      <div class="cond" id="ccardYes">
+        <div class="cond-inner">
+          <div class="row">
+            <div>
+              <label class="q-label" for="ccardBank">Банк / продукт</label>
+              <input type="text" id="ccardBank" placeholder="Kaspi Red, Halyk Bonus...">
+            </div>
+            <div>
+              <label class="q-label" for="ccardLimit">Используемый лимит, ₸</label>
+              <input type="number" id="ccardLimit" min="0" placeholder="150 000">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="q">
+      <span class="q-label">Были ли залоги в ломбарде (золото и т.д.)? *</span>
+      <div class="q-hint">Важно даже если уже выкупили</div>
+      <div class="choices">
+        <label class="choice"><input type="radio" name="pawn" value="Да" data-cond="pawnYes"><span>Да</span></label>
+        <label class="choice"><input type="radio" name="pawn" value="Нет"><span>Нет</span></label>
+      </div>
+      <div class="cond" id="pawnYes">
+        <div class="cond-inner">
+          <div class="row">
+            <div>
+              <label class="q-label" for="pawnWhat">Что и когда</label>
+              <input type="text" id="pawnWhat" placeholder="Золото, вес, год">
+            </div>
+            <div>
+              <label class="q-label" for="pawnNow">Сейчас</label>
+              <select id="pawnNow">
+                <option value="">— выберите —</option>
+                <option>Всё выкуплено</option>
+                <option>Что-то ещё в ломбарде</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="q">
+      <span class="q-label">Есть ли ИП (индивидуальный предприниматель)? *</span>
+      <div class="choices">
+        <label class="choice"><input type="radio" name="ip" value="Да" data-cond="ipYes"><span>Да</span></label>
+        <label class="choice"><input type="radio" name="ip" value="Нет"><span>Нет</span></label>
+      </div>
+      <div class="cond" id="ipYes">
+        <div class="cond-inner">
+          <div class="row">
+            <div>
+              <label class="q-label" for="ipDate">Когда открыто? *</label>
+              <input type="month" id="ipDate">
+            </div>
+            <div>
+              <label class="q-label">Пришлёте годовую выписку из Gold? *</label>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="ipGold" value="Да"><span>Да</span></label>
+                <label class="choice"><input type="radio" name="ipGold" value="Нет"><span>Нет</span></label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IX -->
+  <section>
+    <div class="s-head"><span class="s-num">IX</span><span class="s-title">Дополнительно</span></div>
     <div class="q">
       <label class="q-label" for="comment">Комментарий / вопросы</label>
       <textarea id="comment" placeholder="Например: первичный рынок, нужна рассрочка, интересует срок..."></textarea>
@@ -665,7 +843,12 @@ function progress(){
     $('input[name=delay]:checked'), $('input[name=loans]:checked'),
     $('input[name=own]:checked'),
     $('input[name=pledge]:checked'), $('input[name=benefit]:checked'),
-    calcTotal()>0, $('input[name=extra]:checked')
+    calcTotal()>0, $('input[name=extra]:checked'),
+    $('#city').value.trim(), $('#reg').value.trim(),
+    $('input[name=work]:checked'), $('input[name=zag]:checked'),
+    $('#kids').value!=='', $('#kids18').value!=='',
+    $('input[name=queue]:checked'), $('input[name=ccard]:checked'),
+    $('input[name=pawn]:checked'), $('input[name=ip]:checked')
   ];
   const done=req.filter(Boolean).length;
   $('#fill').style.width=(done/req.length*100)+'%';
@@ -696,6 +879,26 @@ function validate(){
   chk(calcTotal()>0,'Доход семьи');
   chk($('input[name=extra]:checked'),'Дополнительный доход');
   if(val('extra')==='Да') chk(+$('#extraSum').value>0,'Сумма доп. дохода');
+  chk($('#city').value.trim(),'Город');
+  chk($('#reg').value.trim(),'Прописка');
+  chk($('input[name=work]:checked'),'Работаете или нет');
+  if(val('work')==='Да'){
+    chk($('#jobPlace').value.trim(),'Место работы');
+    chk($('input[name=pension]:checked'),'Пенсионные отчисления');
+  }
+  chk($('input[name=zag]:checked'),'ЗАГС');
+  if(val('zag')==='Да') chk($('input[name=spPension]:checked'),'Пенсионные отчисления супруга(и)');
+  chk($('#kids').value!=='','Сколько детей');
+  chk($('#kids18').value!=='','Дети до 18 лет');
+  chk($('input[name=queue]:checked'),'Очередь на жильё');
+  if(val('queue')==='Да') chk($('#queueYear').value,'Год постановки в очередь');
+  chk($('input[name=ccard]:checked'),'Кредитная карта');
+  chk($('input[name=pawn]:checked'),'Залоги в ломбарде');
+  chk($('input[name=ip]:checked'),'ИП');
+  if(val('ip')==='Да'){
+    chk($('#ipDate').value,'Дата открытия ИП');
+    chk($('input[name=ipGold]:checked'),'Выписка из Gold');
+  }
   return missing;
 }
 
@@ -747,6 +950,38 @@ $('#submitBtn').onclick=()=>{
 
   if(deps>0 && perCapita>0 && perCapita<100000)
     notes.push('Доход на человека (с учётом '+deps+' иждивенц'+(deps===1?'а':'ев')+') ниже 100 000 ₸ — учтите при расчёте доступного платежа.');
+
+  // работа, семья, очередь, карты, ломбард, ИП
+  if(val('work')==='Да'){
+    score+=5;
+    notes.push('Трудоустройство подтверждено'+(val('pension')==='Да'?' — есть пенсионные отчисления с работы (сильный плюс к подтверждению дохода)':'')+'.');
+  } else notes.push('Нет официальной работы — доход необходимо подтвердить иначе (выписки, ИП, поручитель).');
+
+  if(val('zag')==='Да' && val('spPension')==='Да') score+=3;
+
+  const kids18v=parseInt($('#kids18').value)||0;
+  if(kids18v>=3) notes.push('Детей до 18 лет: '+kids18v+' — при необходимости уточните программы для многодетных семей.');
+
+  if(val('queue')==='Да'){ score+=5; notes.push('Стоите в очереди на жильё с '+($('#queueYear').value||'—')+' г. ('+($('#queueWhere').value||'очередь')+') — возможны льготные условия и субсидии.'); }
+
+  if(val('ccard')==='Да'){
+    const lim=+$('#ccardLimit').value||0;
+    notes.push('Кредитная карта'+($('#ccardBank').value?' — '+$('#ccardBank').value:'')+' учитывается как долговая нагрузка'+(lim?': использовано '+fmt(lim)+' ₸':'')+'.');
+  }
+  if(val('pawn')==='Да'){
+    if($('#pawnNow').value==='Что-то ещё в ломбарде') notes.push('Часть имущества ещё в ломбарде — рекомендуется погасить до подачи заявки.');
+    else notes.push('Были залоги в ломбарде — банк учитывает даже выкупленные: это важно для кредитной истории.');
+  }
+
+  if(val('ip')==='Да'){
+    const opened=$('#ipDate').value;
+    if(opened){
+      const monthsAge=(Date.now()-new Date(opened).getTime())/(1000*60*60*24*30.4);
+      if(monthsAge>=12){score+=5; notes.push('ИП работает более года — годовая выписка из Gold подтвердит стабильный доход.');}
+      else {score+=2; notes.push('ИП открыт недавно — решение будет зависеть от оборотов по выписке из Gold.');}
+    }
+    if(val('ipGold')==='Нет') notes.push('Годовая выписка из Gold не будет предоставлена — без неё доход ИП подтвердить сложно.');
+  }
 
   // Отбасы
   const otb=val('otbasy');
@@ -836,7 +1071,25 @@ $('#submitBtn').onclick=()=>{
       ['Свободный доход после платежей',fmt(freeIncome)+' ₸/мес'],
       ['Доход на человека',fmt(Math.round(perCapita))+' ₸']
     ])+
-    (txt('comment')?G('VII. Комментарий',[['Заметка',txt('comment')]]):'');
+    G('VII. Работа и семья',[
+      ['Город',txt('city')],['Прописка',txt('reg')],
+      ['Работаете',val('work')],
+      ...(val('work')==='Да'?[['Место работы',txt('jobPlace')],['Пенсионные отчисления',val('pension')]]:[]),
+      ['ЗАГС',val('zag')],
+      ...(val('zag')==='Да'?[['Пенсионные отчисления супруга(и)',val('spPension')],['Доход супруга(и)',fmt(txt('spIncome'))+' ₸/мес']]:[]),
+      ['Всего детей',$('#kids').value],['Детей до 18 лет',$('#kids18').value],
+      ['Очередь на жильё',val('queue')],
+      ...(val('queue')==='Да'?[['Год постановки',txt('queueYear')],['Очередь',txt('queueWhere')]]:[])
+    ])+
+    G('VIII. Карты, ломбард, ИП',[
+      ['Кредитная карта',val('ccard')],
+      ...(val('ccard')==='Да'?[['Банк / продукт',txt('ccardBank')],['Используемый лимит',fmt(txt('ccardLimit'))+' ₸']]:[]),
+      ['Залоги в ломбарде',val('pawn')],
+      ...(val('pawn')==='Да'?[['Что и когда',txt('pawnWhat')],['Статус',$('#pawnNow').value]]:[]),
+      ['ИП',val('ip')],
+      ...(val('ip')==='Да'?[['Открыто',txt('ipDate')],['Выписка из Gold будет',val('ipGold')]]:[])
+    ])+
+    (txt('comment')?G('IX. Комментарий',[['Заметка',txt('comment')]]):'');
 
   $('#form').style.display='none';
   $('header').style.display='none';
