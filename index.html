@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Анкета — заявка на приобретение жилья</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;1,6..96,400&family=Commissioner:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f6f1e7;
+  --paper-2:#efe7d8;
+  --ink:#171512;
+  --ink-soft:#4a453c;
+  --line:#d8cdb8;
+  --emerald:#0e5b45;
+  --emerald-2:#0a4535;
+  --gold:#b8892f;
+  --red:#a32c1e;
+  --radius:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Commissioner',sans-serif;
+  background:
+    radial-gradient(1200px 500px at 85% -10%, rgba(184,137,47,.13), transparent 60%),
+    radial-gradient(900px 600px at -10% 30%, rgba(14,91,69,.10), transparent 55%),
+    var(--paper);
+  color:var(--ink);
+  min-height:100vh;
+  line-height:1.55;
+  padding:32px 16px 80px;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.5;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E");
+}
+.wrap{position:relative;z-index:1;max-width:840px;margin:0 auto}
+
+/* ---------- header ---------- */
+header{margin-bottom:28px}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--emerald);font-weight:600;margin-bottom:14px;
+}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--gold)}
+h1{
+  font-family:'Bodoni Moda',serif;font-weight:700;
+  font-size:clamp(34px,6vw,56px);line-height:1.03;letter-spacing:-.01em;
+}
+h1 em{font-style:italic;color:var(--emerald)}
+.sub{margin-top:12px;color:var(--ink-soft);max-width:560px;font-size:15px}
+
+/* ---------- progress ---------- */
+.progress{
+  position:sticky;top:10px;z-index:20;
+  background:rgba(246,241,231,.9);backdrop-filter:blur(8px);
+  border:1px solid var(--line);border-radius:100px;
+  padding:10px 18px;margin:26px 0 26px;
+  display:flex;align-items:center;gap:14px;
+  box-shadow:0 6px 24px rgba(23,21,18,.06);
+}
+.progress .bar{flex:1;height:6px;background:var(--paper-2);border-radius:100px;overflow:hidden}
+.progress .fill{height:100%;width:0%;border-radius:100px;
+  background:linear-gradient(90deg,var(--emerald),var(--gold));
+  transition:width .5s cubic-bezier(.6,.05,.2,1)}
+.progress .num{font-size:12px;font-weight:600;letter-spacing:.08em;color:var(--ink-soft);white-space:nowrap}
+
+/* ---------- sections / cards ---------- */
+section{
+  background:#fffdf8;border:1px solid var(--line);
+  border-radius:var(--radius);padding:28px 26px 30px;margin-bottom:20px;
+  box-shadow:0 2px 0 rgba(23,21,18,.03), 0 18px 40px -32px rgba(23,21,18,.5);
+  opacity:0;transform:translateY(22px);
+  animation:rise .7s cubic-bezier(.2,.7,.3,1) forwards;
+}
+section:nth-of-type(1){animation-delay:.05s}
+section:nth-of-type(2){animation-delay:.13s}
+section:nth-of-type(3){animation-delay:.21s}
+section:nth-of-type(4){animation-delay:.29s}
+section:nth-of-type(5){animation-delay:.37s}
+section:nth-of-type(6){animation-delay:.45s}
+section:nth-of-type(7){animation-delay:.53s}
+@keyframes rise{to{opacity:1;transform:none}}
+
+.s-head{display:flex;align-items:baseline;gap:14px;margin-bottom:22px;
+  border-bottom:1px dashed var(--line);padding-bottom:14px}
+.s-num{font-family:'Bodoni Moda',serif;font-size:30px;color:var(--gold);line-height:1}
+.s-title{font-size:13px;letter-spacing:.18em;text-transform:uppercase;font-weight:600}
+
+.q{margin-bottom:22px}
+.q:last-child{margin-bottom:0}
+.q-label{display:block;font-weight:600;font-size:15px;margin-bottom:6px}
+.q-hint{font-size:12.5px;color:var(--ink-soft);margin-bottom:10px}
+
+/* ---------- inputs ---------- */
+input[type=text],input[type=tel],input[type=number],input[type=date],
+select,textarea{
+  width:100%;font-family:inherit;font-size:15px;color:var(--ink);
+  background:var(--paper);border:1.5px solid var(--line);
+  border-radius:10px;padding:12px 14px;transition:.2s;
+}
+textarea{min-height:76px;resize:vertical}
+input:focus,select:focus,textarea:focus{
+  outline:none;border-color:var(--emerald);background:#fff;
+  box-shadow:0 0 0 4px rgba(14,91,69,.10);
+}
+input.err,select.err{border-color:var(--red);background:#fdf1ef}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+@media(max-width:560px){.row,.row-3{grid-template-columns:1fr}}
+
+/* ---------- choice cards ---------- */
+.choices{display:flex;flex-wrap:wrap;gap:10px}
+.choice{position:relative;flex:1 1 140px;min-width:130px}
+.choice input{position:absolute;opacity:0;pointer-events:none}
+.choice span{
+  display:block;text-align:center;cursor:pointer;
+  border:1.5px solid var(--line);background:var(--paper);
+  border-radius:10px;padding:13px 12px;font-size:14.5px;font-weight:500;
+  transition:.18s ease;user-select:none;
+}
+.choice span:hover{border-color:var(--emerald);transform:translateY(-2px)}
+.choice input:checked + span{
+  background:var(--emerald);border-color:var(--emerald);color:#fff;
+  box-shadow:0 10px 22px -12px rgba(14,91,69,.9);
+}
+.choice input:focus-visible + span{box-shadow:0 0 0 4px rgba(14,91,69,.18)}
+.choice.alt input:checked + span{background:var(--gold);border-color:var(--gold);box-shadow:0 10px 22px -12px rgba(184,137,47,.9)}
+.choice.bad input:checked + span{background:var(--red);border-color:var(--red)}
+
+/* ---------- conditional blocks ---------- */
+.cond{
+  overflow:hidden;max-height:0;opacity:0;margin-top:0;
+  transition:max-height .45s ease,opacity .35s ease,margin-top .35s;
+}
+.cond.open{max-height:620px;opacity:1;margin-top:16px}
+.cond-inner{
+  border-left:3px solid var(--gold);background:var(--paper);
+  border-radius:0 10px 10px 0;padding:16px 16px 18px;
+}
+
+/* ---------- earners ---------- */
+.earners{display:flex;flex-direction:column;gap:10px}
+.earner{
+  display:grid;grid-template-columns:1fr 160px 40px;gap:10px;
+  animation:pop .3s ease;
+}
+@keyframes pop{from{opacity:0;transform:translateY(-6px)}}
+.earner .del{
+  border:1.5px solid var(--line);background:#fff;border-radius:10px;
+  cursor:pointer;font-size:18px;color:var(--red);transition:.15s;line-height:1;
+}
+.earner .del:hover{background:#fdf1ef;border-color:var(--red)}
+.add-btn{
+  margin-top:10px;font-family:inherit;font-size:13.5px;font-weight:600;
+  border:1.5px dashed var(--emerald);color:var(--emerald);background:transparent;
+  border-radius:10px;padding:10px 16px;cursor:pointer;transition:.18s;
+}
+.add-btn:hover{background:rgba(14,91,69,.08)}
+.total-line{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);
+  font-size:14px;font-weight:600;
+}
+.total-line b{font-family:'Bodoni Moda',serif;font-size:22px;color:var(--emerald)}
+
+/* ---------- submit ---------- */
+.cta{
+  display:block;width:100%;margin-top:6px;cursor:pointer;
+  font-family:'Commissioner',sans-serif;font-size:16px;font-weight:700;
+  letter-spacing:.04em;color:#fff;background:var(--ink);
+  border:none;border-radius:12px;padding:18px;transition:.22s;
+  box-shadow:0 16px 34px -18px rgba(23,21,18,.95);
+}
+.cta:hover{background:var(--emerald);transform:translateY(-2px)}
+.cta:active{transform:none}
+.warn{
+  display:none;margin-top:12px;color:var(--red);font-size:13.5px;
+  background:#fdf1ef;border:1px solid #eccfca;border-radius:8px;padding:10px 14px;
+}
+.warn.show{display:block;animation:pop .3s}
+
+/* ---------- result ---------- */
+#result{display:none}
+#result.show{display:block;animation:rise .6s cubic-bezier(.2,.7,.3,1) forwards}
+.score-card{
+  background:linear-gradient(150deg,var(--emerald-2),var(--emerald) 55%,#127a5c);
+  color:#f3efe4;border-radius:var(--radius);padding:30px 26px;
+  position:relative;overflow:hidden;margin-bottom:20px;
+  box-shadow:0 30px 60px -34px rgba(10,69,53,.95);
+}
+.score-card::after{
+  content:"";position:absolute;right:-70px;top:-70px;width:240px;height:240px;
+  border:1px solid rgba(255,255,255,.16);border-radius:50%;
+  box-shadow:0 0 0 34px rgba(255,255,255,.05);
+}
+.score-label{font-size:12px;letter-spacing:.2em;text-transform:uppercase;opacity:.75}
+.score-val{font-family:'Bodoni Moda',serif;font-size:74px;line-height:1;margin:8px 0 2px}
+.score-val small{font-size:26px;opacity:.6}
+.score-verdict{font-size:17px;font-weight:600;margin-top:6px}
+.score-note{font-size:13.5px;opacity:.8;margin-top:8px;max-width:520px;position:relative;z-index:1}
+.score-bar{height:8px;background:rgba(255,255,255,.18);border-radius:100px;margin-top:18px;overflow:hidden;position:relative;z-index:1}
+.score-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),#f0d79a);border-radius:100px;transition:width 1.1s cubic-bezier(.4,0,.2,1) .25s}
+
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:20px}
+.metric{background:#fffdf8;border:1px solid var(--line);border-radius:12px;padding:16px}
+.metric .k{font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.metric .v{font-family:'Bodoni Moda',serif;font-size:26px;margin-top:6px;line-height:1.1;word-break:break-word}
+.metric .v.green{color:var(--emerald)}
+.metric .v.red{color:var(--red)}
+
+.summary{background:#fffdf8;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.summary h3{
+  font-family:'Bodoni Moda',serif;font-size:22px;padding:20px 24px 0;
+}
+.sum-group{padding:16px 24px;border-bottom:1px dashed var(--line)}
+.sum-group:last-child{border-bottom:none}
+.sum-group .gt{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:8px}
+.sum-item{display:flex;gap:10px;font-size:14.5px;padding:3px 0;flex-wrap:wrap}
+.sum-item .sk{color:var(--ink-soft);min-width:230px}
+.sum-item .sv{font-weight:600}
+.result-actions{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
+.btn-ghost{
+  flex:1;min-width:160px;font-family:inherit;font-size:14.5px;font-weight:600;
+  border:1.5px solid var(--ink);background:transparent;color:var(--ink);
+  border-radius:12px;padding:15px;cursor:pointer;transition:.2s;
+}
+.btn-ghost:hover{background:var(--ink);color:#fff}
+.btn-solid{
+  flex:1;min-width:160px;font-family:inherit;font-size:14.5px;font-weight:700;
+  border:none;background:var(--gold);color:#fff;border-radius:12px;padding:15px;
+  cursor:pointer;transition:.2s;
+}
+.btn-solid:hover{filter:brightness(1.08);transform:translateY(-2px)}
+
+@media print{
+  body{background:#fff;padding:0}
+  body::before,.progress,header,section,.result-actions{display:none!important}
+  #result{display:block!important}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">Отбасы банк · заявка на жильё</div>
+  <h1>Анкета <em>заёмщика</em></h1>
+  <p class="sub">Ответьте на вопросы — в конце вы получите сводку ответов, предварительную оценку платёжеспособности и рекомендацию.</p>
+</header>
+
+<div class="progress">
+  <div class="bar"><div class="fill" id="fill"></div></div>
+  <div class="num" id="pnum">0 / 0</div>
+</div>
+
+<form id="form" novalidate>
+
+  <!-- I -->
+  <section>
+    <div class="s-head"><span class="s-num">I</span><span class="s-title">Контактные данные</span></div>
+    <div class="q row">
+      <div>
+        <label class="q-label" for="fio">ФИО *</label>
+        <input type="text" id="fio" placeholder="Иванов Иван Иванович">
+      </div>
+      <div>
+        <label class="q-label" for="phone">Телефон *</label>
+        <input type="tel" id="phone" placeholder="+7 (___) ___-__-__">
+      </div>
+    </div>
+    <div class="q row">
+      <div>
+        <label class="q-label" for="birth">Дата рождения</label>
+        <input type="date" id="birth">
+      </div>
+      <div>
+        <label class="q-label" for="email">E-mail</label>
+        <input type="text" id="email" placeholder="mail@example.com">
+      </div>
+    </div>
+  </section>
+
+  <!-- II -->
+  <section>
+    <div class="s-head"><span class="s-num">II</span><span class="s-title">Параметры квартиры</span></div>
+    <div class="q">
+      <label class="q-label" for="price">Планируемая стоимость, ₸ *</label>
+      <div class="q-hint">Ползунок и поле ввода связаны</div>
+      <div class="row" style="grid-template-columns:1fr 200px;align-items:center">
+        <input type="range" id="priceR" min="5000000" max="100000000" step="500000" value="25000000">
+        <input type="number" id="price" min="0" placeholder="25 000 000">
+      </div>
+    </div>
+    <div class="q row">
+      <div>
+        <label class="q-label" for="district">Район *</label>
+        <select id="district">
+          <option value="">— выберите —</option>
+          <option>Алматинский</option><option>Медеуский</option><option>Бостандыкский</option>
+          <option>Нуресалинский / Приморский</option><option>Турксибский</option>
+          <option>Ауэзовский</option><option>Жетысуский</option><option>Наурызбайский</option>
+          <option>Ещёгород / пригород</option><option>Другой город</option>
+        </select>
+      </div>
+      <div>
+        <label class="q-label" for="people">Сколько человек будет проживать *</label>
+        <select id="people">
+          <option value="">— выберите —</option>
+          <option>1</option><option>2</option><option>3</option><option>4</option>
+          <option>5</option><option>6 и более</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <!-- III -->
+  <section>
+    <div class="s-head"><span class="s-num">III</span><span class="s-title">Счёт в Отбасы банке</span></div>
+    <div class="q">
+      <span class="q-label">Есть ли у вас счёт в Отбасы банке? *</span>
+      <div class="choices">
+        <label class="choice"><input type="radio" name="otbasy" value="Да" data-cond="otbasyYes"><span>Да</span></label>
+        <label class="choice"><input type="radio" name="otbasy" value="Нет"><span>Нет</span></label>
+      </div>
+      <div class="cond" id="otbasyYes">
+        <div class="cond-inner">
+          <div class="row-3">
+            <div>
+              <label class="q-label" for="otbSum">Сумма на счёте, ₸</label>
+              <input type="number" id="otbSum" placeholder="3 000 000">
+            </div>
+            <div>
+              <label class="q-label" for="otbTerm">Как давно лежит</label>
+              <select id="otbTerm">
+                <option value="">—</option>
+                <option>Меньше 3 месяцев</option><option>3–6 месяцев</option>
+                <option>6–12 месяцев</option><option>1–3 года</option><option>Более 3 лет</option>
+              </select>
+            </div>
+            <div>
+              <label class="q-label" for="otbReward">Вознаграждение, ₸/мес</label>
+              <input type="number" id="otbReward" placeholder="15 000">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IV -->
+  <section>
+    <div class="s-head"><span class="s-num">IV</span><span class="s-title">Кредитная история</span></div>
+    <div class="q">
+      <span class="q-label">Состояние кредитной истории *</span>
+      <div class="choices">
+        <label class="choice"><input type="radio" name="credit" value="Хорошее" data-score="25"><span>Хорошее</span></label>
+        <label class="choice"><input type="radio" name="credit" value="Удовлетворительное" data-score="15"><span>Удовлетворительное</span></label>
+        <label class="choice bad"><input type="radio" name="credit" value="Плохое" data-score="0"><span>Плохое</span></label>
+      </div>
+    </div>
+    <div class="q">
+      <span class="q-label">Были ли просрочки? *</span>
+      <div class="choices">
+        <label class="choice"><input type="radio" name="delay" value="Нет" data-cond="delayNo" data-score="15"><span>Нет</span></label>
+        <label class="choice alt"><input type="radio" name="delay" value="Да" data-cond="delayYes" data-score="0"><span>Да</span></label>
+      </div>
+      <div class="cond" id="delayYes">
+        <div class="cond-inner">
+          <div class="row-3">
+            <div>
+              <label class="q-label" for="dCount">Сколько раз</label>
+              <input type="number" id="dCount" min="0" placeholder="2">
+            </div>
+            <div>
+              <label class="q-label" for="dPeriod">За какой период</label>
+              <input type="text" id="dPeriod" placeholder="последние 2 года">
+            </div>
+            <div>
+              <label class="q-label" for="dSum">На какую сумму, ₸</label>
+              <input type="number" id="dSum" placeholder="50 000">
+            </div>
+          </div>
+          <div style="margin-top:12px">
+            <label class="q-label" for="dClosed">Все ли просрочки закрыты?</label>
+            <select id="dClosed"><option value="">— выберите —</option><option>Да, все закрыты</option><option>Нет, есть текущие</option></select>
+          </div>
+        </div>
+      </div>
+      <div class="cond" id="delayNo"><div class="cond-inner" style="border-left-color:var(--emerald)">
+        Отлично — чистая история значительно упрощает одобрение.
+      </div></div>
+    </div>
+  </section>
+
+  <!-- V -->
+  <section>
+    <div class="s-head"><span class="s-num">V</span><span class="s-title">Жильё, залог, льготы</span></div>
+    <div class="q">
+      <span class="q-label">Есть ли своё жильё? *</span>
+      <div class="choices">
+        <label class="choice"><input type="radio" name="own" value="Да" data-cond="ownYes"><span>Да</span></label>
+        <label class="choice"><input type="radio" name="own" value="Нет"><span>Нет</span></label>
+      </div>
+      <div class="cond" id="ownYes">
+        <div class="cond-inner">
+          <div class="row">
+            <div><label class="q-label" for="ownAddr">Адрес</label><input type="text" id="ownAddr" placeholder="г. Алматы, ул. ..."></div>
+            <div><label class="q-label" for="ownArea">Площадь, м²</label><input type="number" id="ownArea" placeholder="64"></div>
+          </div>
+          <div style="margin-top:12px"><label class="q-label" for="ownOwner">Собственники</label><input type="text" id="ownOwner" placeholder="ФИО"></div>
+        </div>
+      </div>
+    </div>
+    <div class="q">
+      <span class="q-label">Есть ли что-нибудь в залоге? *</span>
+      <div class="choices">
+        <label class="choice"><input type="radio" name="pledge" value="Да" data-cond="pledgeYes"><span>Да</span></label>
+        <label class="choice"><input type="radio" name="pledge" value="Нет"><span>Нет</span></label>
+      </div>
+      <div class="cond" id="pledgeYes">
+        <div class="cond-inner">
+          <div class="row">
+            <div><label class="q-label" for="plWhat">Что именно</label><input type="text" id="plWhat" placeholder="Квартира, авто, техника..."></div>
+            <div><label class="q-label" for="plWho">У кого (кредитор)</label><input type="text" id="plWho" placeholder="Банк / МФО / физлицо"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="q">
+      <span class="q-label">Принадлежите ли к льготной группе? *</span>
+      <div class="choices">
+        <label class="choice"><input type="radio" name="benefit" value="Да" data-cond="benefitYes"><span>Да</span></label>
+        <label class="choice"><input type="radio" name="benefit" value="Нет"><span>Нет</span></label>
+      </div>
+      <div class="cond" id="benefitYes">
+        <div class="cond-inner">
+          <div class="row">
+            <div>
+              <label class="q-label" for="bCat">Категория</label>
+              <select id="bCat">
+                <option value="">— выберите —</option>
+                <option>Многодетная семья</option><option>Молодая семья</option>
+                <option>Инвалид / семья с инвалидом</option><option>Участник войны и приравненный</option>
+                <option>Сирота / выпускник интерната</option><option>Военный, силовик</option>
+                <option>Участник накопительной ипотеки</option><option>Другая</option>
+              </select>
+            </div>
+            <div><label class="q-label" for="bDoc">Подтверждающий документ</label><input type="text" id="bDoc" placeholder="Удостоверение, справка..."></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VI -->
+  <section>
+    <div class="s-head"><span class="s-num">VI</span><span class="s-title">Доходы семьи</span></div>
+    <div class="q">
+      <span class="q-label">Кто в семье зарабатывает и сколько *</span>
+      <div class="q-hint">Добавьте каждого члена семьи с доходом за месяц</div>
+      <div class="earners" id="earners"></div>
+      <button type="button" class="add-btn" id="addEarner">+ Добавить члена семьи</button>
+      <div class="total-line"><span>Совокупный доход семьи, ₸/мес</span><b id="incomeTotal">0</b></div>
+    </div>
+  </section>
+
+  <!-- VII -->
+  <section>
+    <div class="s-head"><span class="s-num">VII</span><span class="s-title">Дополнительно</span></div>
+    <div class="q">
+      <label class="q-label" for="comment">Комментарий / вопросы</label>
+      <textarea id="comment" placeholder="Например: первичный рынок, нужна рассрочка, интересует срок..."></textarea>
+    </div>
+    <button type="button" class="cta" id="submitBtn">Получить итог по анкете →</button>
+    <div class="warn" id="warn"></div>
+  </section>
+</form>
+
+<!-- RESULT -->
+<div id="result">
+  <div class="score-card">
+    <div class="score-label">Предварительная оценка</div>
+    <div class="score-val"><span id="scoreNum">0</span><small>/100</small></div>
+    <div class="score-verdict" id="verdict">—</div>
+    <div class="score-bar"><i id="scoreBar"></i></div>
+    <div class="score-note" id="scoreNote"></div>
+  </div>
+
+  <div class="metrics">
+    <div class="metric"><div class="k">Совокупный доход</div><div class="v green" id="mIncome">—</div></div>
+    <div class="metric"><div class="k">Рекомендуемый платёж (≤50%)</div><div class="v" id="mPay">—</div></div>
+    <div class="metric"><div class="k">Стоимость квартиры</div><div class="v" id="mPrice">—</div></div>
+    <div class="metric"><div class="k">Оценка дохода к цене</div><div class="v" id="mRatio">—</div></div>
+  </div>
+
+  <div class="summary">
+    <h3>Сводка ответов</h3>
+    <div id="sumBody"></div>
+  </div>
+
+  <div class="result-actions">
+    <button class="btn-ghost" onclick="window.print()">Печать / PDF</button>
+    <button class="btn-ghost" id="copyBtn">Скопировать текст</button>
+    <button class="btn-solid" id="againBtn">Заполнить заново</button>
+  </div>
+</div>
+
+</div>
+
+<script>
+const $=(s,r=document)=>r.querySelector(s);
+const $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const fmt=n=>(Number(n)||0).toLocaleString('ru-RU');
+
+/* ---- conditional fields ---- */
+$$('input[data-cond]').forEach(r=>{
+  r.addEventListener('change',()=>{
+    const box=document.getElementById(r.dataset.cond);
+    if(box) box.classList.toggle('open', r.checked);
+  });
+});
+
+/* ---- price slider link ---- */
+const priceR=$('#priceR'), price=$('#price');
+priceR.addEventListener('input',()=>price.value=priceR.value);
+price.addEventListener('input',()=>{ if(price.value) priceR.value=Math.min(+price.value,100000000); });
+
+/* ---- earners ---- */
+const earners=$('#earners');
+function addEarner(name='',sum=''){
+  const d=document.createElement('div');
+  d.className='earner';
+  d.innerHTML=`<input type="text" class="e-name" placeholder="Кто зарабатывает (ФИО / роль)" value="${name}">
+    <input type="number" class="e-sum" placeholder="Доход, ₸" value="${sum}">
+    <button type="button" class="del" title="Удалить">×</button>`;
+  d.querySelector('.del').onclick=()=>{d.remove();calcTotal();};
+  d.querySelectorAll('input').forEach(i=>i.addEventListener('input',calcTotal));
+  earners.appendChild(d);
+  calcTotal();
+}
+function calcTotal(){
+  const t=$$('.e-sum').reduce((a,i)=>a+(+i.value||0),0);
+  $('#incomeTotal').textContent=fmt(t);
+  return t;
+}
+$('#addEarner').onclick=()=>addEarner();
+addEarner('Я','');
+
+/* ---- progress ---- */
+function progress(){
+  const req=[
+    $('#fio').value.trim(), $('#phone').value.trim(),
+    price.value, $('#district').value, $('#people').value,
+    $('input[name=otbasy]:checked'), $('input[name=credit]:checked'),
+    $('input[name=delay]:checked'), $('input[name=own]:checked'),
+    $('input[name=pledge]:checked'), $('input[name=benefit]:checked'),
+    calcTotal()>0
+  ];
+  const done=req.filter(Boolean).length;
+  $('#fill').style.width=(done/req.length*100)+'%';
+  $('#pnum').textContent=`${done} / ${req.length}`;
+}
+$('#form').addEventListener('input',progress);
+$('#form').addEventListener('change',progress);
+
+/* ---- validation ---- */
+function validate(){
+  const missing=[];
+  const chk=(cond,label)=>{ if(!cond) missing.push(label); };
+  chk($('#fio').value.trim(),'ФИО');
+  chk($('#phone').value.trim(),'Телефон');
+  chk(+price.value>0,'Стоимость квартиры');
+  chk($('#district').value,'Район');
+  chk($('#people').value,'Число проживающих');
+  chk($('input[name=otbasy]:checked'),'Счёт в Отбасы банке');
+  chk($('input[name=credit]:checked'),'Кредитная история');
+  chk($('input[name=delay]:checked'),'Просрочки');
+  chk($('input[name=own]:checked'),'Своё жильё');
+  chk($('input[name=pledge]:checked'),'Залог');
+  chk($('input[name=benefit]:checked'),'Льготная группа');
+  chk(calcTotal()>0,'Доход семьи');
+  return missing;
+}
+
+/* ---- build result ---- */
+function val(name){ const el=$(`input[name=${name}]:checked`); return el?el.value:'—'; }
+function txt(id){ const el=$('#'+id); return el?el.value.trim():''; }
+
+$('#submitBtn').onclick=()=>{
+  const missing=validate();
+  const w=$('#warn');
+  if(missing.length){
+    w.textContent='Заполните: '+missing.join(', ')+'.';
+    w.classList.add('show');
+    w.scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
+  w.classList.remove('show');
+
+  const income=calcTotal();
+  const priceV=+price.value;
+  const creditS=+$(`input[name=credit]:checked`).dataset.score||0;
+  const delayS=+$(`input[name=delay]:checked`).dataset.score||0;
+
+  let score=creditS+delayS;
+  const notes=[];
+
+  // Отбасы
+  const otb=val('otbasy');
+  if(otb==='Да'){
+    const sum=+txt('otbSum')||0;
+    score+=15;
+    if(sum>=3000000) score+=5;
+    if(['1–3 года','Более 3 лет'].includes($('#otbTerm').value)) score+=5;
+    notes.push('Наличие счёта в Отбасы банке и накопительная дисциплина учитываются положительно.');
+  } else notes.push('Счёт в Отбасы банке отсутствует — его открытие улучшает условия по программе.');
+
+  // льгота
+  if(val('benefit')==='Да'){ score+=10; notes.push('Льготная категория ('+($('#bCat').value||'указано')+'): возможны субсидия, сниженная ставка и уменьшенный первоначальный взнос.'); }
+
+  // доход
+  const ratio=income>0?priceV/income:0;
+  if(ratio<=10) score+=10; else if(ratio<=20) score+=5; else {score+=0; notes.push('Стоимость жилья превышает 20 совокупных месячных доходов семьи — рассмотрите бюджет ниже или увеличьте первоначальный взнос.');}
+  if(income>0 && priceV>0 && priceV/income>40) notes.push('Отношение цены к доходу выше 40 — заявка выглядит рискованной без крупного первоначального взноса.');
+
+  if(val('pledge')==='Да') notes.push('Наличие залога увеличивает долговую нагрузку — учтите это при оценке платёжеспособности.');
+  if(txt('dClosed')==='Нет, есть текущие') notes.push('Есть незакрытые просрочки — до подачи заявки необходимо погасить задолженность.');
+
+  score=Math.max(0,Math.min(100,score));
+
+  let verdict,note;
+  if(score>=75){verdict='Высокая готовность — рекомендуем подавать заявку'; note='Финансовый профиль сильный. Соберите справки о доходе и подтверждение первоначального взноса.';}
+  else if(score>=50){verdict='Умеренная готовность — заявка рассмотрима'; note='Шансы хорошие. Усилите профиль: пополните счёт в Отбасы банке, закройте мелкие обязательства, подготовьте документы по доходу.';}
+  else if(score>=30){verdict='Низкая готовность — нужна доработка'; note='Рекомендуем: закрыть просрочки, увеличить первоначальный взнос и/или доход семьи, рассмотреть льготные программы.';}
+  else {verdict='Пока не готовы к заявке'; note='Присутствуют серьёзные риски (кредитная история / просрочки / долговая нагрузка). Сначала стабилизируйте обязательства.';}
+
+  $('#scoreNum').textContent=score;
+  $('#verdict').textContent=verdict;
+  $('#scoreNote').textContent=notes.join(' ')||'Базовая оценка построена на кредитной истории, доходе и накоплениях.';
+  setTimeout(()=>$('#scoreBar').style.width=score+'%',60);
+
+  const monthlyPay=Math.round(income*0.5);
+  $('#mIncome').textContent=fmt(income)+' ₸';
+  $('#mPay').textContent=fmt(monthlyPay)+' ₸';
+  $('#mPrice').textContent=fmt(priceV)+' ₸';
+  const rEl=$('#mRatio');
+  rEl.textContent=ratio?ratio.toFixed(1)+'×':'—';
+  rEl.className='v '+(ratio&&ratio<=20?'green':'red');
+
+  // summary
+  const G=(t,items)=>`<div class="sum-group"><div class="gt">${t}</div>${items.map(([k,v])=>`<div class="sum-item"><span class="sk">${k}</span><span class="sv">${v||'—'}</span></div>`).join('')}</div>`;
+  const earnersList=$$('.earner').map(d=>{
+    const n=d.querySelector('.e-name').value.trim(), s=d.querySelector('.e-sum').value;
+    return n?`${n} — ${fmt(s)} ₸`:'';
+  }).filter(Boolean).join('<br>')||'—';
+
+  $('#sumBody').innerHTML=
+    G('I. Контактные данные',[
+      ['ФИО',txt('fio')],['Телефон',txt('phone')],['Дата рождения',txt('birth')],['E-mail',txt('email')]
+    ])+
+    G('II. Параметры квартиры',[
+      ['Стоимость',fmt(priceV)+' ₸'],['Район',$('#district').value],
+      ['Проживать будет чел.',$('#people').value],['Ориентир по доходу (мес. платёж)',fmt(monthlyPay)+' ₸']
+    ])+
+    G('III. Отбасы банк',[
+      ['Счёт',otb],
+      ...(otb==='Да'?[['Сумма',fmt(txt('otbSum'))+' ₸'],['Срок хранения',$('#otbTerm').value||'—'],['Вознаграждение',fmt(txt('otbReward'))+' ₸/мес']]:[])
+    ])+
+    G('IV. Кредитная история',[
+      ['Состояние',val('credit')],['Просрочки',val('delay')],
+      ...(val('delay')==='Да'?[['Количество',txt('dCount')],['Период',txt('dPeriod')],['Сумма',fmt(txt('dSum'))+' ₸'],['Закрыты?',txt('dClosed')]]:[])
+    ])+
+    G('V. Жильё, залог, льготы',[
+      ['Своё жильё',val('own')],
+      ...(val('own')==='Да'?[['Адрес',txt('ownAddr')],['Площадь',txt('ownArea')+' м²'],['Собственники',txt('ownOwner')]]:[]),
+      ['Залог',val('pledge')],
+      ...(val('pledge')==='Да'?[['Предмет залога',txt('plWhat')],['Кредитор',txt('plWho')]]:[]),
+      ['Льготная группа',val('benefit')],
+      ...(val('benefit')==='Да'?[['Категория',$('#bCat').value],['Документ',txt('bDoc')]]:[])
+    ])+
+    G('VI. Доходы семьи',[['Состав и доходы',earnersList],['Итого',fmt(income)+' ₸/мес']])+
+    (txt('comment')?G('VII. Комментарий',[['Заметка',txt('comment')]]):'');
+
+  $('#form').style.display='none';
+  $('header').style.display='none';
+  $('.progress').style.display='none';
+  $('#result').classList.add('show');
+  window.scrollTo({top:0,behavior:'smooth'});
+};
+
+/* ---- actions ---- */
+$('#againBtn').onclick=()=>location.reload();
+$('#copyBtn').onclick=()=>{
+  const t=$('.summary').innerText.replace(/\n{3,}/g,'\n\n');
+  const head=`Оценка: ${$('#scoreNum').textContent}/100 — ${$('#verdict').textContent}\n\n`;
+  navigator.clipboard.writeText(head+t).then(()=>{$('#copyBtn').textContent='Скопировано!';setTimeout(()=>$('#copyBtn').textContent='Скопировать текст',1800);});
+};
+
+progress();
+</script>
+</body>
+</html>
+
