@@ -316,6 +316,22 @@ input.err,select.err{border-color:var(--red);background:#fdf1ef}
         </select>
       </div>
     </div>
+    <div class="q row">
+      <div>
+        <label class="q-label" for="dependents">Сколько иждивенцев? *</label>
+        <div class="q-hint">Дети, нетрудоспособные родственники на иждивении</div>
+        <select id="dependents">
+          <option value="">— выберите —</option>
+          <option>0</option><option>1</option><option>2</option><option>3</option>
+          <option>4</option><option>5 и более</option>
+        </select>
+      </div>
+      <div>
+        <label class="q-label" for="down">Первоначальный взнос, ₸ *</label>
+        <div class="q-hint" id="downHint">Сколько готовы внести сейчас</div>
+        <input type="number" id="down" min="0" placeholder="5 000 000">
+      </div>
+    </div>
   </section>
 
   <!-- III -->
@@ -395,6 +411,34 @@ input.err,select.err{border-color:var(--red);background:#fdf1ef}
         Отлично — чистая история значительно упрощает одобрение.
       </div></div>
     </div>
+    <div class="q">
+      <span class="q-label">Есть ли действующие кредиты? *</span>
+      <div class="choices">
+        <label class="choice"><input type="radio" name="loans" value="Да" data-cond="loansYes"><span>Да</span></label>
+        <label class="choice"><input type="radio" name="loans" value="Нет" data-cond="loansNo"><span>Нет</span></label>
+      </div>
+      <div class="cond" id="loansYes">
+        <div class="cond-inner">
+          <div class="row-3">
+            <div>
+              <label class="q-label" for="loanPay">Платёж в месяц, ₸ *</label>
+              <input type="number" id="loanPay" min="0" placeholder="45 000">
+            </div>
+            <div>
+              <label class="q-label" for="loanTotal">Общий остаток долга, ₸</label>
+              <input type="number" id="loanTotal" min="0" placeholder="1 200 000">
+            </div>
+            <div>
+              <label class="q-label" for="loanCount">Сколько кредитов</label>
+              <input type="number" id="loanCount" min="1" placeholder="2">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cond" id="loansNo"><div class="cond-inner" style="border-left-color:var(--emerald)">
+        Нет действующих обязательств — это плюс к платёжеспособности.
+      </div></div>
+    </div>
   </section>
 
   <!-- V -->
@@ -467,6 +511,28 @@ input.err,select.err{border-color:var(--red);background:#fdf1ef}
       <button type="button" class="add-btn" id="addEarner">+ Добавить члена семьи</button>
       <div class="total-line"><span>Совокупный доход семьи, ₸/мес</span><b id="incomeTotal">0</b></div>
     </div>
+    <div class="q">
+      <span class="q-label">Есть ли дополнительный доход? *</span>
+      <div class="q-hint">Подработка, аренда, дивиденды, пособия и т.п.</div>
+      <div class="choices">
+        <label class="choice"><input type="radio" name="extra" value="Да" data-cond="extraYes"><span>Да</span></label>
+        <label class="choice"><input type="radio" name="extra" value="Нет"><span>Нет</span></label>
+      </div>
+      <div class="cond" id="extraYes">
+        <div class="cond-inner">
+          <div class="row">
+            <div>
+              <label class="q-label" for="extraSum">Сумма доп. дохода, ₸/мес</label>
+              <input type="number" id="extraSum" min="0" placeholder="100 000">
+            </div>
+            <div>
+              <label class="q-label" for="extraWhat">Источник</label>
+              <input type="text" id="extraWhat" placeholder="Аренда квартиры, фриланс...">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- VII -->
@@ -492,8 +558,10 @@ input.err,select.err{border-color:var(--red);background:#fdf1ef}
   </div>
 
   <div class="metrics">
-    <div class="metric"><div class="k">Совокупный доход</div><div class="v green" id="mIncome">—</div></div>
-    <div class="metric"><div class="k">Рекомендуемый платёж (≤50%)</div><div class="v" id="mPay">—</div></div>
+    <div class="metric"><div class="k">Доход семьи (с доп. доходом)</div><div class="v green" id="mIncome">—</div></div>
+    <div class="metric"><div class="k">Платежи по кредитам</div><div class="v" id="mDebt">—</div></div>
+    <div class="metric"><div class="k">Рекомендуемый платёж (≤50% свободного)</div><div class="v" id="mPay">—</div></div>
+    <div class="metric"><div class="k">Первоначальный взнос</div><div class="v green" id="mDown">—</div></div>
     <div class="metric"><div class="k">Стоимость квартиры</div><div class="v" id="mPrice">—</div></div>
     <div class="metric"><div class="k">Оценка дохода к цене</div><div class="v" id="mRatio">—</div></div>
   </div>
@@ -526,9 +594,21 @@ $$('input[data-cond]').forEach(r=>{
 });
 
 /* ---- price slider link ---- */
-const priceR=$('#priceR'), price=$('#price');
+const priceR=$('#priceR'), price=$('#price'), down=$('#down');
 priceR.addEventListener('input',()=>price.value=priceR.value);
-price.addEventListener('input',()=>{ if(price.value) priceR.value=Math.min(+price.value,100000000); });
+price.addEventListener('input',()=>{ if(price.value) priceR.value=Math.min(+price.value,100000000); updateDownHint(); });
+function updateDownHint(){
+  const h=$('#downHint'), p=+price.value, d=+down.value||0;
+  if(!p||!d){ h.textContent='Сколько готовы внести сейчас'; return; }
+  const pct=(d/p*100);
+  h.textContent='Это '+pct.toFixed(1)+'% от стоимости'+(pct>=20?' ✓ достаточный уровень':' (желательно от 20%)');
+}
+down.addEventListener('input',updateDownHint);
+
+/* ---- extra income sync ---- */
+function extraIncome(){ return val('extra')==='Да' ? (+$('#extraSum').value||0) : 0; }
+$$('input[name=extra]').forEach(r=>r.addEventListener('change',()=>{ calcTotal(); }));
+$('#extraSum').addEventListener('input',calcTotal);
 
 /* ---- earners ---- */
 const earners=$('#earners');
@@ -545,8 +625,8 @@ function addEarner(name='',sum=''){
 }
 function calcTotal(){
   const t=$$('.e-sum').reduce((a,i)=>a+(+i.value||0),0);
-  $('#incomeTotal').textContent=fmt(t);
-  return t;
+  $('#incomeTotal').textContent=fmt(t+extraIncome());
+  return t+extraIncome();
 }
 $('#addEarner').onclick=()=>addEarner();
 addEarner('Я','');
@@ -556,10 +636,12 @@ function progress(){
   const req=[
     $('#fio').value.trim(), $('#phone').value.trim(),
     price.value, $('#district').value, $('#people').value,
+    $('#dependents').value!=='', +$('#down').value>=0&&$('#down').value!=='',
     $('input[name=otbasy]:checked'), $('input[name=credit]:checked'),
-    $('input[name=delay]:checked'), $('input[name=own]:checked'),
+    $('input[name=delay]:checked'), $('input[name=loans]:checked'),
+    $('input[name=own]:checked'),
     $('input[name=pledge]:checked'), $('input[name=benefit]:checked'),
-    calcTotal()>0
+    calcTotal()>0, $('input[name=extra]:checked')
   ];
   const done=req.filter(Boolean).length;
   $('#fill').style.width=(done/req.length*100)+'%';
@@ -577,13 +659,19 @@ function validate(){
   chk(+price.value>0,'Стоимость квартиры');
   chk($('#district').value,'Район');
   chk($('#people').value,'Число проживающих');
+  chk($('#dependents').value!=='','Иждивенцы');
+  chk($('#down').value!==''&&+$('#down').value>=0,'Первоначальный взнос');
   chk($('input[name=otbasy]:checked'),'Счёт в Отбасы банке');
   chk($('input[name=credit]:checked'),'Кредитная история');
   chk($('input[name=delay]:checked'),'Просрочки');
+  chk($('input[name=loans]:checked'),'Действующие кредиты');
+  if(val('loans')==='Да') chk(+$('#loanPay').value>0,'Платёж по кредитам');
   chk($('input[name=own]:checked'),'Своё жильё');
   chk($('input[name=pledge]:checked'),'Залог');
   chk($('input[name=benefit]:checked'),'Льготная группа');
   chk(calcTotal()>0,'Доход семьи');
+  chk($('input[name=extra]:checked'),'Дополнительный доход');
+  if(val('extra')==='Да') chk(+$('#extraSum').value>0,'Сумма доп. дохода');
   return missing;
 }
 
@@ -609,6 +697,32 @@ $('#submitBtn').onclick=()=>{
 
   let score=creditS+delayS;
   const notes=[];
+
+  // кредиты, иждивенцы, взнос, доп. доход
+  const debtPay=val('loans')==='Да'?(+$('#loanPay').value||0):0;
+  const debtTotal=val('loans')==='Да'?(+$('#loanTotal').value||0):0;
+  const freeIncome=Math.max(0,income-debtPay);
+  const downV=+$('#down').value||0;
+  const downPct=priceV>0?(downV/priceV*100):0;
+  const depRaw=$('#dependents').value;
+  const deps=depRaw?Math.min(parseInt(depRaw)||0,5):0;
+  const residentsRaw=$('#people').value;
+  const residents=residentsRaw?(parseInt(residentsRaw)||1):1;
+  const perCapita=freeIncome>0?freeIncome/(residents+deps):0;
+
+  if(downPct>=20){score+=10; notes.push('Первоначальный взнос '+downPct.toFixed(1)+'% — достаточный уровень для одобрения.');}
+  else if(downPct>=10){score+=5; notes.push('Первоначальный взнос '+downPct.toFixed(1)+'% — приемлемо, но от 20% условия будут лучше.');}
+  else if(downV>0){score+=2; notes.push('Первоначальный взнос менее 10% — рекомендуется увеличить для получения одобрения.');}
+  else notes.push('Первоначальный взнос не указан — большинство программ требуют минимум 10–20% от стоимости.');
+
+  if(debtPay>0){
+    const dti=income>0?debtPay/income:0;
+    if(dti<=0.3){score+=5; notes.push('Платежи по действующим кредитам составляют '+Math.round(dti*100)+'% дохода — долговая нагрузка в норме.');}
+    else if(dti>0.5){score-=5; notes.push('Платежи по кредитам — '+Math.round(dti*100)+'% дохода: долговая нагрузка высокая, сумма нового платежа будет ограничена.');}
+  } else score+=5;
+
+  if(deps>0 && perCapita>0 && perCapita<100000)
+    notes.push('Доход на человека (с учётом '+deps+' иждивенц'+(deps===1?'а':'ев')+') ниже 100 000 ₸ — учтите при расчёте доступного платежа.');
 
   // Отбасы
   const otb=val('otbasy');
@@ -644,10 +758,12 @@ $('#submitBtn').onclick=()=>{
   $('#scoreNote').textContent=notes.join(' ')||'Базовая оценка построена на кредитной истории, доходе и накоплениях.';
   setTimeout(()=>$('#scoreBar').style.width=score+'%',60);
 
-  const monthlyPay=Math.round(income*0.5);
+  const monthlyPay=Math.round(freeIncome*0.5);
   $('#mIncome').textContent=fmt(income)+' ₸';
   $('#mPay').textContent=fmt(monthlyPay)+' ₸';
   $('#mPrice').textContent=fmt(priceV)+' ₸';
+  $('#mDebt').textContent=fmt(debtPay)+' ₸';
+  $('#mDown').textContent=fmt(downV)+' ₸'+(downPct?' ('+downPct.toFixed(1)+'%)':'');
   const rEl=$('#mRatio');
   rEl.textContent=ratio?ratio.toFixed(1)+'×':'—';
   rEl.className='v '+(ratio&&ratio<=20?'green':'red');
@@ -665,7 +781,9 @@ $('#submitBtn').onclick=()=>{
     ])+
     G('II. Параметры квартиры',[
       ['Стоимость',fmt(priceV)+' ₸'],['Район',$('#district').value],
-      ['Проживать будет чел.',$('#people').value],['Ориентир по доходу (мес. платёж)',fmt(monthlyPay)+' ₸']
+      ['Проживать будет чел.',$('#people').value],['Иждивенцев',depRaw],
+      ['Первоначальный взнос',fmt(downV)+' ₸'+(downPct?' ('+downPct.toFixed(1)+'%)':'')],
+      ['Ориентир по доходу (мес. платёж)',fmt(monthlyPay)+' ₸']
     ])+
     G('III. Отбасы банк',[
       ['Счёт',otb],
@@ -673,7 +791,9 @@ $('#submitBtn').onclick=()=>{
     ])+
     G('IV. Кредитная история',[
       ['Состояние',val('credit')],['Просрочки',val('delay')],
-      ...(val('delay')==='Да'?[['Количество',txt('dCount')],['Период',txt('dPeriod')],['Сумма',fmt(txt('dSum'))+' ₸'],['Закрыты?',txt('dClosed')]]:[])
+      ...(val('delay')==='Да'?[['Количество',txt('dCount')],['Период',txt('dPeriod')],['Сумма',fmt(txt('dSum'))+' ₸'],['Закрыты?',txt('dClosed')]]:[]),
+      ['Действующие кредиты',val('loans')],
+      ...(val('loans')==='Да'?[['Платёж в месяц',fmt(txt('loanPay'))+' ₸'],['Остаток долга',fmt(txt('loanTotal'))+' ₸'],['Количество',txt('loanCount')]]:[])
     ])+
     G('V. Жильё, залог, льготы',[
       ['Своё жильё',val('own')],
@@ -683,7 +803,15 @@ $('#submitBtn').onclick=()=>{
       ['Льготная группа',val('benefit')],
       ...(val('benefit')==='Да'?[['Категория',$('#bCat').value],['Документ',txt('bDoc')]]:[])
     ])+
-    G('VI. Доходы семьи',[['Состав и доходы',earnersList],['Итого',fmt(income)+' ₸/мес']])+
+    G('VI. Доходы семьи',[
+      ['Состав и доходы',earnersList],
+      ['Доп. доход',val('extra')+(val('extra')==='Да'?': '+fmt(txt('extraSum'))+' ₸/мес ('+(txt('extraWhat')||'источник не указан')+')':'')],
+      ['Итого',fmt(income)+' ₸/мес'],
+      ['Иждивенцев',depRaw],
+      ['Действующие платежи по кредитам',fmt(debtPay)+' ₸/мес'],
+      ['Свободный доход после платежей',fmt(freeIncome)+' ₸/мес'],
+      ['Доход на человека',fmt(Math.round(perCapita))+' ₸']
+    ])+
     (txt('comment')?G('VII. Комментарий',[['Заметка',txt('comment')]]):'');
 
   $('#form').style.display='none';
