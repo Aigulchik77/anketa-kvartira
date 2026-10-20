@@ -224,6 +224,12 @@ input.err,select.err{border-color:var(--red);background:#fdf1ef}
 .sum-item .sk{color:var(--ink-soft);min-width:230px}
 .sum-item .sv{font-weight:600}
 .result-actions{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
+.tg-status{
+  display:none;margin-top:16px;font-size:13.5px;border-radius:10px;padding:11px 16px;
+}
+.tg-status.ok{display:block;background:rgba(14,91,69,.1);color:var(--emerald);border:1px solid rgba(14,91,69,.3)}
+.tg-status.fail{display:block;background:rgba(163,44,30,.08);color:var(--red);border:1px solid rgba(163,44,30,.3)}
+.tg-status.wait{display:block;background:var(--paper-2);color:var(--ink-soft);border:1px solid var(--line)}
 .btn-ghost{
   flex:1;min-width:160px;font-family:inherit;font-size:14.5px;font-weight:600;
   border:1.5px solid var(--ink);background:transparent;color:var(--ink);
@@ -571,6 +577,8 @@ input.err,select.err{border-color:var(--red);background:#fdf1ef}
     <div id="sumBody"></div>
   </div>
 
+  <div class="tg-status" id="tgStatus"></div>
+
   <div class="result-actions">
     <button class="btn-ghost" onclick="window.print()">Печать / PDF</button>
     <button class="btn-ghost" id="copyBtn">Скопировать текст</button>
@@ -584,6 +592,22 @@ input.err,select.err{border-color:var(--red);background:#fdf1ef}
 const $=(s,r=document)=>r.querySelector(s);
 const $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const fmt=n=>(Number(n)||0).toLocaleString('ru-RU');
+
+/* ===== TELEGRAM: вставьте токен бота и chat_id ===== */
+const TG_TOKEN='ЗАМЕНИТЕ_НА_ТОКЕН';
+const TG_CHAT='ЗАМЕНИТЕ_НА_CHAT_ID';
+/* ==================================================== */
+
+async function sendTelegram(text){
+  if(TG_TOKEN.startsWith('ЗАМЕНИТЕ')||TG_CHAT.startsWith('ЗАМЕНИТЕ')) return 'unconfigured';
+  try{
+    const r=await fetch('https://api.telegram.org/bot'+TG_TOKEN+'/sendMessage',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({chat_id:TG_CHAT,text:text.slice(0,3900)})
+    });
+    return r.ok?'ok':'fail';
+  }catch(e){ return 'fail'; }
+}
 
 /* ---- conditional fields ---- */
 $$('input[data-cond]').forEach(r=>{
@@ -819,6 +843,26 @@ $('#submitBtn').onclick=()=>{
   $('.progress').style.display='none';
   $('#result').classList.add('show');
   window.scrollTo({top:0,behavior:'smooth'});
+
+  // отправка итога в Telegram
+  const tg=$('#tgStatus');
+  tg.className='tg-status wait'; tg.textContent='Отправка результата менеджеру...';
+  const tgMsg='📥 Новая анкета на жильё\n\n'
+    +'Оценка: '+score+'/100 — '+verdict+'\n'
+    +'ФИО: '+txt('fio')+'\n'
+    +'Телефон: '+txt('phone')+'\n'
+    +'Квартира: '+fmt(priceV)+' ₸, '+$('#district').value+'\n'
+    +'Взнос: '+fmt(downV)+' ₸ ('+downPct.toFixed(1)+'%)\n'
+    +'Доход семьи: '+fmt(income)+' ₸/мес\n'
+    +'Платежи по кредитам: '+fmt(debtPay)+' ₸/мес\n'
+    +'Свободный доход: '+fmt(freeIncome)+' ₸/мес\n'
+    +'Иждивенцев: '+depRaw+'\n\n'
+    +'—— Сводка ответов ——\n'+$('.summary').innerText;
+  sendTelegram(tgMsg).then(s=>{
+    if(s==='ok'){ tg.className='tg-status ok'; tg.textContent='✓ Результат отправлен менеджеру в Telegram'; }
+    else if(s==='unconfigured'){ tg.className='tg-status'; tg.style.display='none'; }
+    else { tg.className='tg-status fail'; tg.textContent='Не удалось отправить в Telegram (проверьте интернет)'; }
+  });
 };
 
 /* ---- actions ---- */
