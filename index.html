@@ -1,9 +1,15 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="kk">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Анкета — заявка на приобретение жилья</title>
+<title>Нурсауле · Отбасы банк — анкета</title>
+<meta name="description" content="Нурсауле · Отбасы банк — онлайн-анкета заёмщика: расчёт первоначального взноса, платёжеспособности и предварительная оценка заявки.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Нурсауле · Отбасы банк">
+<meta property="og:title" content="Нурсауле · Отбасы банк — анкета заёмщика">
+<meta property="og:description" content="Заполните анкету за 3 минуты: первоначальный взнос, доход семьи, предварительная оценка и рекомендации.">
+<meta name="theme-color" content="#0e5b45">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;1,6..96,400&family=Commissioner:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -260,10 +266,10 @@ input.err,select.err{border-color:var(--red);background:#fdf1ef}
 <div class="wrap">
 
 <header>
-  <div class="eyebrow">Отбасы банк · заявка на жильё</div>
-  <h1>Анкета <em>заёмщика</em></h1>
-  <p class="sub">Ответьте на вопросы — в конце вы получите сводку ответов, предварительную оценку платёжеспособности и рекомендацию.</p>
-  <a class="lang-link" href="kz.html">Қазақша</a>
+  <div class="eyebrow">Нурсауле · Отбасы банк</div>
+  <h1>Қарыз алушы <em>анкетасы</em></h1>
+  <p class="sub">Сұрақтарға жауап беріңіз — соңында жауаптар түйінін, алдын ала төлеу қабілетінің бағасын және ұсыныс аласыз.</p>
+  <a class="lang-link" href="index.html">Русский</a>
 </header>
 
 <div class="progress">
@@ -275,11 +281,11 @@ input.err,select.err{border-color:var(--red);background:#fdf1ef}
 
   <!-- I -->
   <section>
-    <div class="s-head"><span class="s-num">I</span><span class="s-title">Контактные данные</span></div>
+    <div class="s-head"><span class="s-num">I</span><span class="s-title">Байланыс деректері</span></div>
     <div class="q row">
       <div>
-        <label class="q-label" for="fio">ФИО *</label>
-        <input type="text" id="fio" placeholder="Иванов Иван Иванович">
+        <label class="q-label" for="fio">Аты-жөні *</label>
+        <input type="text" id="fio" placeholder="Ахметов Ахмет Ахметұлы">
       </div>
       <div>
         <label class="q-label" for="phone">Телефон *</label>
@@ -288,7 +294,7 @@ input.err,select.err{border-color:var(--red);background:#fdf1ef}
     </div>
     <div class="q row">
       <div>
-        <label class="q-label" for="birth">Дата рождения</label>
+        <label class="q-label" for="birth">Туған күні</label>
         <input type="date" id="birth">
       </div>
       <div>
@@ -300,79 +306,79 @@ input.err,select.err{border-color:var(--red);background:#fdf1ef}
 
   <!-- II -->
   <section>
-    <div class="s-head"><span class="s-num">II</span><span class="s-title">Параметры квартиры</span></div>
+    <div class="s-head"><span class="s-num">II</span><span class="s-title">Пәтер параметрлері</span></div>
     <div class="q">
-      <label class="q-label" for="price">Планируемая стоимость, ₸ *</label>
-      <div class="q-hint">Ползунок и поле ввода связаны</div>
+      <label class="q-label" for="price">Жоспарланған құны, ₸ *</label>
+      <div class="q-hint">Сүйгіш пен енгізу өрісі байланысқан</div>
       <div class="row" style="grid-template-columns:1fr 200px;align-items:center">
         <input type="range" id="priceR" min="5000000" max="100000000" step="500000" value="25000000">
         <input type="number" id="price" min="0" placeholder="25 000 000">
       </div>
     </div>
+    <div class="q">
+      <label class="q-label" for="people">Неше адам тұрады *</label>
+      <select id="people">
+        <option value="">— таңдаңыз —</option>
+        <option>1</option><option>2</option><option>3</option><option>4</option>
+        <option>5</option><option>6 және одан көп</option>
+      </select>
+    </div>
     <div class="q row">
       <div>
-        <label class="q-label" for="district">Район *</label>
-        <select id="district">
-          <option value="">— выберите —</option>
-          <option>Алматинский</option><option>Медеуский</option><option>Бостандыкский</option>
-          <option>Нуресалинский / Приморский</option><option>Турксибский</option>
-          <option>Ауэзовский</option><option>Жетысуский</option><option>Наурызбайский</option>
-          <option>Ещёгород / пригород</option><option>Другой город</option>
+        <label class="q-label" for="dependents">Неше асыраушы? *</label>
+        <div class="q-hint">Балалар, еңбекке жарамсыз туыстар</div>
+        <select id="dependents">
+          <option value="">— таңдаңыз —</option>
+          <option>0</option><option>1</option><option>2</option><option>3</option>
+          <option>4</option><option>5 және одан көп</option>
         </select>
       </div>
       <div>
-        <label class="q-label" for="people">Сколько человек будет проживать *</label>
-        <select id="people">
-          <option value="">— выберите —</option>
-          <option>1</option><option>2</option><option>3</option><option>4</option>
-          <option>5</option><option>6 и более</option>
-        </select>
+        <label class="q-label" for="down">Бастапқы жарна, ₸ *</label>
+        <div class="q-hint" id="downHint">Қазір қанша салуға дайынсыз</div>
+        <input type="number" id="down" min="0" placeholder="5 000 000">
       </div>
     </div>
     <div class="q row">
       <div>
-        <label class="q-label" for="dependents">Сколько иждивенцев? *</label>
-        <div class="q-hint">Дети, нетрудоспособные родственники на иждивении</div>
-        <select id="dependents">
-          <option value="">— выберите —</option>
-          <option>0</option><option>1</option><option>2</option><option>3</option>
-          <option>4</option><option>5 и более</option>
-        </select>
+        <label class="q-label" for="ownPledge">Бастапқы жарнаға жеке қаражатыңыздың жалпы сомасы, ₸ *</label>
+        <div class="q-hint">Нақты жинақталған/бос қаражат (ақша)</div>
+        <input type="number" id="ownPledge" min="0" placeholder="5 000 000">
       </div>
       <div>
-        <label class="q-label" for="down">Первоначальный взнос, ₸ *</label>
-        <div class="q-hint" id="downHint">Сколько готовы внести сейчас</div>
-        <input type="number" id="down" min="0" placeholder="5 000 000">
+        <label class="q-label" for="ownPledgeSource">Қайдан жиналды / көздері *</label>
+        <div class="q-hint">Жинақ, сыйлық, сату, басқа (қысқаша)</div>
+        <input type="text" id="ownPledgeSource" placeholder="Жинақ шоты, аула / мүлікті сату т.б.">
       </div>
     </div>
   </section>
 
   <!-- III -->
   <section>
-    <div class="s-head"><span class="s-num">III</span><span class="s-title">Счёт в Отбасы банке</span></div>
+    <div class="s-head"><span class="s-num">III</span><span class="s-title">Отбасы банкіндегі шот</span></div>
     <div class="q">
-      <span class="q-label">Есть ли у вас счёт в Отбасы банке? *</span>
+      <span class="q-label">Отбасы банкінде шотыңыз бар ма? *</span>
       <div class="choices">
-        <label class="choice"><input type="radio" name="otbasy" value="Да" data-cond="otbasyYes"><span>Да</span></label>
-        <label class="choice"><input type="radio" name="otbasy" value="Нет"><span>Нет</span></label>
+        <label class="choice"><input type="radio" name="otbasy" value="Да" data-cond="otbasyYes"><span>Иә</span></label>
+        <label class="choice"><input type="radio" name="otbasy" value="Нет"><span>Жоқ</span></label>
       </div>
       <div class="cond" id="otbasyYes">
         <div class="cond-inner">
           <div class="row-3">
             <div>
-              <label class="q-label" for="otbSum">Сумма на счёте, ₸</label>
+              <label class="q-label" for="otbSum">Шоттағы сума, ₸</label>
               <input type="number" id="otbSum" placeholder="3 000 000">
             </div>
             <div>
-              <label class="q-label" for="otbTerm">Как давно лежит</label>
+              <label class="q-label" for="otbTerm">Қанша уақыт жатыр</label>
               <select id="otbTerm">
                 <option value="">—</option>
-                <option>Меньше 3 месяцев</option><option>3–6 месяцев</option>
-                <option>6–12 месяцев</option><option>1–3 года</option><option>Более 3 лет</option>
+                <option>3 айдан аз</option><option>3–6 ай</option>
+                <option>6–12 ай</option><option>1–3 жыл</option><option>3 жылдан астам</option>
               </select>
             </div>
             <div>
-              <label class="q-label" for="otbReward">Вознаграждение, ₸/мес</label>
+              <label class="q-label" for="otbReward">Сыйақы, ₸/мес</label>
               <input type="number" id="otbReward" placeholder="15 000">
             </div>
           </div>
@@ -383,131 +389,131 @@ input.err,select.err{border-color:var(--red);background:#fdf1ef}
 
   <!-- IV -->
   <section>
-    <div class="s-head"><span class="s-num">IV</span><span class="s-title">Кредитная история</span></div>
+    <div class="s-head"><span class="s-num">IV</span><span class="s-title">Несие тарихы</span></div>
     <div class="q">
-      <span class="q-label">Состояние кредитной истории *</span>
+      <span class="q-label">Несие тарихының күйі *</span>
       <div class="choices">
-        <label class="choice"><input type="radio" name="credit" value="Хорошее" data-score="25"><span>Хорошее</span></label>
-        <label class="choice"><input type="radio" name="credit" value="Удовлетворительное" data-score="15"><span>Удовлетворительное</span></label>
-        <label class="choice bad"><input type="radio" name="credit" value="Плохое" data-score="0"><span>Плохое</span></label>
+        <label class="choice"><input type="radio" name="credit" value="Хорошее" data-score="25"><span>Жақсы</span></label>
+        <label class="choice"><input type="radio" name="credit" value="Удовлетворительное" data-score="15"><span>Қанағаттанарлық</span></label>
+        <label class="choice bad"><input type="radio" name="credit" value="Плохое" data-score="0"><span>Жаман</span></label>
       </div>
     </div>
     <div class="q">
-      <span class="q-label">Были ли просрочки? *</span>
+      <span class="q-label">Мерзімінен кешірулер болды ма? *</span>
       <div class="choices">
-        <label class="choice"><input type="radio" name="delay" value="Нет" data-cond="delayNo" data-score="15"><span>Нет</span></label>
-        <label class="choice alt"><input type="radio" name="delay" value="Да" data-cond="delayYes" data-score="0"><span>Да</span></label>
+        <label class="choice"><input type="radio" name="delay" value="Нет" data-cond="delayNo" data-score="15"><span>Жоқ</span></label>
+        <label class="choice alt"><input type="radio" name="delay" value="Да" data-cond="delayYes" data-score="0"><span>Иә</span></label>
       </div>
       <div class="cond" id="delayYes">
         <div class="cond-inner">
           <div class="row-3">
             <div>
-              <label class="q-label" for="dCount">Сколько раз</label>
+              <label class="q-label" for="dCount">Неше рет</label>
               <input type="number" id="dCount" min="0" placeholder="2">
             </div>
             <div>
-              <label class="q-label" for="dPeriod">За какой период</label>
-              <input type="text" id="dPeriod" placeholder="последние 2 года">
+              <label class="q-label" for="dPeriod">Қай кезең үшін</label>
+              <input type="text" id="dPeriod" placeholder="соңғы 2 жыл">
             </div>
             <div>
-              <label class="q-label" for="dSum">На какую сумму, ₸</label>
+              <label class="q-label" for="dSum">Қанша сумаға, ₸</label>
               <input type="number" id="dSum" placeholder="50 000">
             </div>
           </div>
           <div style="margin-top:12px">
-            <label class="q-label" for="dClosed">Все ли просрочки закрыты?</label>
-            <select id="dClosed"><option value="">— выберите —</option><option>Да, все закрыты</option><option>Нет, есть текущие</option></select>
+            <label class="q-label" for="dClosed">Барлық кешірулер жабылды ма?</label>
+            <select id="dClosed"><option value="">— таңдаңыз —</option><option>Иә, бәрі жабылды</option><option>Жоқ, ағымдағылар бар</option></select>
           </div>
         </div>
       </div>
       <div class="cond" id="delayNo"><div class="cond-inner" style="border-left-color:var(--emerald)">
-        Отлично — чистая история значительно упрощает одобрение.
+        Тамаша — таза тарих бекітуді айтарлықтай жеңілдетеді.
       </div></div>
     </div>
     <div class="q">
-      <span class="q-label">Есть ли действующие кредиты? *</span>
+      <span class="q-label">Ағымдағы несиелер бар ма? *</span>
       <div class="choices">
-        <label class="choice"><input type="radio" name="loans" value="Да" data-cond="loansYes"><span>Да</span></label>
-        <label class="choice"><input type="radio" name="loans" value="Нет" data-cond="loansNo"><span>Нет</span></label>
+        <label class="choice"><input type="radio" name="loans" value="Да" data-cond="loansYes"><span>Иә</span></label>
+        <label class="choice"><input type="radio" name="loans" value="Нет" data-cond="loansNo"><span>Жоқ</span></label>
       </div>
       <div class="cond" id="loansYes">
         <div class="cond-inner">
           <div class="row-3">
             <div>
-              <label class="q-label" for="loanPay">Платёж в месяц, ₸ *</label>
+              <label class="q-label" for="loanPay">Айлық төлем, ₸ *</label>
               <input type="number" id="loanPay" min="0" placeholder="45 000">
             </div>
             <div>
-              <label class="q-label" for="loanTotal">Общий остаток долга, ₸</label>
+              <label class="q-label" for="loanTotal">Жалпы қарыз қалдығы, ₸</label>
               <input type="number" id="loanTotal" min="0" placeholder="1 200 000">
             </div>
             <div>
-              <label class="q-label" for="loanCount">Сколько кредитов</label>
+              <label class="q-label" for="loanCount">Неше несие</label>
               <input type="number" id="loanCount" min="1" placeholder="2">
             </div>
           </div>
         </div>
       </div>
       <div class="cond" id="loansNo"><div class="cond-inner" style="border-left-color:var(--emerald)">
-        Нет действующих обязательств — это плюс к платёжеспособности.
+        Ағымдағы міндеттемелер жоқ — бұл төлеу қабілетіне плюс.
       </div></div>
     </div>
   </section>
 
   <!-- V -->
   <section>
-    <div class="s-head"><span class="s-num">V</span><span class="s-title">Жильё, залог, льготы</span></div>
+    <div class="s-head"><span class="s-num">V</span><span class="s-title">Тұрғын үй, кепіл, жеңілдіктер</span></div>
     <div class="q">
-      <span class="q-label">Есть ли своё жильё? *</span>
+      <span class="q-label">Өз тұрғын үйіңіз бар ма? *</span>
       <div class="choices">
-        <label class="choice"><input type="radio" name="own" value="Да" data-cond="ownYes"><span>Да</span></label>
-        <label class="choice"><input type="radio" name="own" value="Нет"><span>Нет</span></label>
+        <label class="choice"><input type="radio" name="own" value="Да" data-cond="ownYes"><span>Иә</span></label>
+        <label class="choice"><input type="radio" name="own" value="Нет"><span>Жоқ</span></label>
       </div>
       <div class="cond" id="ownYes">
         <div class="cond-inner">
           <div class="row">
-            <div><label class="q-label" for="ownAddr">Адрес</label><input type="text" id="ownAddr" placeholder="г. Алматы, ул. ..."></div>
-            <div><label class="q-label" for="ownArea">Площадь, м²</label><input type="number" id="ownArea" placeholder="64"></div>
+            <div><label class="q-label" for="ownAddr">Мекенжай</label><input type="text" id="ownAddr" placeholder="Алматы қ., ... к-сі"></div>
+            <div><label class="q-label" for="ownArea">Ауданы, м²</label><input type="number" id="ownArea" placeholder="64"></div>
           </div>
-          <div style="margin-top:12px"><label class="q-label" for="ownOwner">Собственники</label><input type="text" id="ownOwner" placeholder="ФИО"></div>
+          <div style="margin-top:12px"><label class="q-label" for="ownOwner">Иегерлер</label><input type="text" id="ownOwner" placeholder="Аты-жөні"></div>
         </div>
       </div>
     </div>
     <div class="q">
-      <span class="q-label">Есть ли что-нибудь в залоге? *</span>
+      <span class="q-label">Кепілдікте нәрсе бар ма? *</span>
       <div class="choices">
-        <label class="choice"><input type="radio" name="pledge" value="Да" data-cond="pledgeYes"><span>Да</span></label>
-        <label class="choice"><input type="radio" name="pledge" value="Нет"><span>Нет</span></label>
+        <label class="choice"><input type="radio" name="pledge" value="Да" data-cond="pledgeYes"><span>Иә</span></label>
+        <label class="choice"><input type="radio" name="pledge" value="Нет"><span>Жоқ</span></label>
       </div>
       <div class="cond" id="pledgeYes">
         <div class="cond-inner">
           <div class="row">
-            <div><label class="q-label" for="plWhat">Что именно</label><input type="text" id="plWhat" placeholder="Квартира, авто, техника..."></div>
-            <div><label class="q-label" for="plWho">У кого (кредитор)</label><input type="text" id="plWho" placeholder="Банк / МФО / физлицо"></div>
+            <div><label class="q-label" for="plWhat">Дәл не</label><input type="text" id="plWhat" placeholder="Пәтер, көлік, техника..."></div>
+            <div><label class="q-label" for="plWho">Кімде (несие беруші)</label><input type="text" id="plWho" placeholder="Банк / МФО / жеке тұлға"></div>
           </div>
         </div>
       </div>
     </div>
     <div class="q">
-      <span class="q-label">Принадлежите ли к льготной группе? *</span>
+      <span class="q-label">Жеңілдік тобына жатасыз ба? *</span>
       <div class="choices">
-        <label class="choice"><input type="radio" name="benefit" value="Да" data-cond="benefitYes"><span>Да</span></label>
-        <label class="choice"><input type="radio" name="benefit" value="Нет"><span>Нет</span></label>
+        <label class="choice"><input type="radio" name="benefit" value="Да" data-cond="benefitYes"><span>Иә</span></label>
+        <label class="choice"><input type="radio" name="benefit" value="Нет"><span>Жоқ</span></label>
       </div>
       <div class="cond" id="benefitYes">
         <div class="cond-inner">
           <div class="row">
             <div>
-              <label class="q-label" for="bCat">Категория</label>
+              <label class="q-label" for="bCat">Санат</label>
               <select id="bCat">
-                <option value="">— выберите —</option>
-                <option>Многодетная семья</option><option>Молодая семья</option>
-                <option>Инвалид / семья с инвалидом</option><option>Участник войны и приравненный</option>
-                <option>Сирота / выпускник интерната</option><option>Военный, силовик</option>
-                <option>Участник накопительной ипотеки</option><option>Другая</option>
+                <option value="">— таңдаңыз —</option>
+                <option>Көпбалалы отбасы</option><option>Жас отбасы</option>
+                <option>Мүгедек / отбасында мүгедек бар</option><option>Соғыс ардагері және оған теңестірілген</option>
+                <option>Жетім / интернат түлегі</option><option>Әскери, құқық қорғаушы</option>
+                <option>Жинақтаушы ипотека қатысушысы</option><option>Басқа</option>
               </select>
             </div>
-            <div><label class="q-label" for="bDoc">Подтверждающий документ</label><input type="text" id="bDoc" placeholder="Удостоверение, справка..."></div>
+            <div><label class="q-label" for="bDoc">Растайтын құжат</label><input type="text" id="bDoc" placeholder="Куәлік, анықтама..."></div>
           </div>
         </div>
       </div>
@@ -516,31 +522,31 @@ input.err,select.err{border-color:var(--red);background:#fdf1ef}
 
   <!-- VI -->
   <section>
-    <div class="s-head"><span class="s-num">VI</span><span class="s-title">Доходы семьи</span></div>
+    <div class="s-head"><span class="s-num">VI</span><span class="s-title">Отбасы табыстары</span></div>
     <div class="q">
-      <span class="q-label">Кто в семье зарабатывает и сколько *</span>
-      <div class="q-hint">Добавьте каждого члена семьи с доходом за месяц</div>
+      <span class="q-label">Отбасында кім және қанша табады *</span>
+      <div class="q-hint">Әр отбасы мүшесін айлық табыспен қосыңыз</div>
       <div class="earners" id="earners"></div>
-      <button type="button" class="add-btn" id="addEarner">+ Добавить члена семьи</button>
-      <div class="total-line"><span>Совокупный доход семьи, ₸/мес</span><b id="incomeTotal">0</b></div>
+      <button type="button" class="add-btn" id="addEarner">+ Отбасы мүшесін қосу</button>
+      <div class="total-line"><span>Отбасының жалпы табысы, ₸/ай</span><b id="incomeTotal">0</b></div>
     </div>
     <div class="q">
-      <span class="q-label">Есть ли дополнительный доход? *</span>
-      <div class="q-hint">Подработка, аренда, дивиденды, пособия и т.п.</div>
+      <span class="q-label">Қосымша табыс бар ма? *</span>
+      <div class="q-hint">Қосымша жұмыс, жалға беру, дивидендтер, жәрдемақылар және т.б.</div>
       <div class="choices">
-        <label class="choice"><input type="radio" name="extra" value="Да" data-cond="extraYes"><span>Да</span></label>
-        <label class="choice"><input type="radio" name="extra" value="Нет"><span>Нет</span></label>
+        <label class="choice"><input type="radio" name="extra" value="Да" data-cond="extraYes"><span>Иә</span></label>
+        <label class="choice"><input type="radio" name="extra" value="Нет"><span>Жоқ</span></label>
       </div>
       <div class="cond" id="extraYes">
         <div class="cond-inner">
           <div class="row">
             <div>
-              <label class="q-label" for="extraSum">Сумма доп. дохода, ₸/мес</label>
+              <label class="q-label" for="extraSum">Қосымша табыс сомасы, ₸/ай</label>
               <input type="number" id="extraSum" min="0" placeholder="100 000">
             </div>
             <div>
-              <label class="q-label" for="extraWhat">Источник</label>
-              <input type="text" id="extraWhat" placeholder="Аренда квартиры, фриланс...">
+              <label class="q-label" for="extraWhat">Көзі</label>
+              <input type="text" id="extraWhat" placeholder="Пәтер жалға беру, фриланс...">
             </div>
           </div>
         </div>
@@ -550,35 +556,60 @@ input.err,select.err{border-color:var(--red);background:#fdf1ef}
 
   <!-- VII -->
   <section>
-    <div class="s-head"><span class="s-num">VII</span><span class="s-title">Работа и семья</span></div>
+    <div class="s-head"><span class="s-num">VII</span><span class="s-title">Жұмыс және отбасы</span></div>
     <div class="q row">
       <div>
-        <label class="q-label" for="city">Из какого вы города? *</label>
-        <input type="text" id="city" placeholder="г. Алматы">
+        <label class="q-label" for="city">Қала / облыс *</label>
+        <select id="city">
+          <option value="">— таңдаңыз —</option>
+          <option>Астана қ.</option>
+          <option>Алматы қ.</option>
+          <option>Шымкент қ.</option>
+          <option>Ақтөбе қ.</option>
+          <option>Атырау қ.</option>
+          <option>Актау қ.</option>
+          <option>Қарағанды қ.</option>
+          <option>Тараз қ.</option>
+          <option>Өскемен қ.</option>
+          <option>Павлодар қ.</option>
+          <option>Семей қ.</option>
+          <option>Қостанай қ.</option>
+          <option>Қызылорда қ.</option>
+          <option>Түркістан қ.</option>
+          <option>Көкшетау қ.</option>
+          <option>Талдықорған қ.</option>
+          <option>Ақтөбе облысы</option>
+          <option>Алматы облысы</option>
+          <option>Атырау облысы</option>
+          <option>Маңғыстау облысы</option>
+          <option>Қарағанды облысы</option>
+          <option>Шымкент облысы</option>
+          <option>Басқа қала / облыс</option>
+        </select>
       </div>
       <div>
-        <label class="q-label" for="reg">Где прописка? *</label>
-        <input type="text" id="reg" placeholder="г. Алматы, ул. ..., дом ...">
+        <label class="q-label" for="reg">Тіркелген мекенжайыңыз? *</label>
+        <input type="text" id="reg" placeholder="Қала, көше, үй">
       </div>
     </div>
     <div class="q">
-      <span class="q-label">Работаете ли вы? *</span>
+      <span class="q-label">Жұмыс жасайсыз ба? *</span>
       <div class="choices">
-        <label class="choice"><input type="radio" name="work" value="Да" data-cond="workYes"><span>Да</span></label>
-        <label class="choice"><input type="radio" name="work" value="Нет"><span>Нет</span></label>
+        <label class="choice"><input type="radio" name="work" value="Да" data-cond="workYes"><span>Иә</span></label>
+        <label class="choice"><input type="radio" name="work" value="Нет"><span>Жоқ</span></label>
       </div>
       <div class="cond" id="workYes">
         <div class="cond-inner">
           <div class="row">
             <div>
-              <label class="q-label" for="jobPlace">Где место работы? *</label>
-              <input type="text" id="jobPlace" placeholder="ООО «...», должность">
+              <label class="q-label" for="jobPlace">Жұмыс орныңыз қайда? *</label>
+              <input type="text" id="jobPlace" placeholder="«...» ЖШС, лауазымы">
             </div>
             <div>
-              <label class="q-label">С места работы идут ли пенсионные отчисления? *</label>
+              <label class="q-label">Жұмыстан зейнетақы аударылады ма? *</label>
               <div class="choices">
-                <label class="choice"><input type="radio" name="pension" value="Да"><span>Да</span></label>
-                <label class="choice"><input type="radio" name="pension" value="Нет"><span>Нет</span></label>
+                <label class="choice"><input type="radio" name="pension" value="Да"><span>Иә</span></label>
+                <label class="choice"><input type="radio" name="pension" value="Нет"><span>Жоқ</span></label>
               </div>
             </div>
           </div>
@@ -586,23 +617,23 @@ input.err,select.err{border-color:var(--red);background:#fdf1ef}
       </div>
     </div>
     <div class="q">
-      <span class="q-label">Есть ли зарегистрированный брак (ЗАГС)? *</span>
+      <span class="q-label">Ресми тіркелген неке (ЗАГС) бар ма? *</span>
       <div class="choices">
-        <label class="choice"><input type="radio" name="zag" value="Да" data-cond="zagYes"><span>Да</span></label>
-        <label class="choice"><input type="radio" name="zag" value="Нет"><span>Нет</span></label>
+        <label class="choice"><input type="radio" name="zag" value="Да" data-cond="zagYes"><span>Иә</span></label>
+        <label class="choice"><input type="radio" name="zag" value="Нет"><span>Жоқ</span></label>
       </div>
       <div class="cond" id="zagYes">
         <div class="cond-inner">
           <div class="row">
             <div>
-              <label class="q-label">С работы супруга(и) идут ли пенсионные отчисления? *</label>
+              <label class="q-label">Жұбайыңыз жұмысынан зейнетақы аударылады ма? *</label>
               <div class="choices">
-                <label class="choice"><input type="radio" name="spPension" value="Да"><span>Да</span></label>
-                <label class="choice"><input type="radio" name="spPension" value="Нет"><span>Нет</span></label>
+                <label class="choice"><input type="radio" name="spPension" value="Да"><span>Иә</span></label>
+                <label class="choice"><input type="radio" name="spPension" value="Нет"><span>Жоқ</span></label>
               </div>
             </div>
             <div>
-              <label class="q-label" for="spIncome">Доход супруга(и), ₸/мес</label>
+              <label class="q-label" for="spIncome">Жұбайдың табысы, ₸/ай</label>
               <input type="number" id="spIncome" min="0" placeholder="200 000">
             </div>
           </div>
@@ -611,38 +642,38 @@ input.err,select.err{border-color:var(--red);background:#fdf1ef}
     </div>
     <div class="q row">
       <div>
-        <label class="q-label" for="kids">Сколько у вас детей? *</label>
+        <label class="q-label" for="kids">Неше балаңыз бар? *</label>
         <select id="kids">
-          <option value="">— выберите —</option>
+          <option value="">— таңдаңыз —</option>
           <option>0</option><option>1</option><option>2</option><option>3</option>
-          <option>4</option><option>5</option><option>6 и более</option>
+          <option>4</option><option>5</option><option>6 және одан көп</option>
         </select>
       </div>
       <div>
-        <label class="q-label" for="kids18">Сколько детей до 18 лет? *</label>
+        <label class="q-label" for="kids18">18 жасқа толмаған бала нешеу? *</label>
         <select id="kids18">
-          <option value="">— выберите —</option>
+          <option value="">— таңдаңыз —</option>
           <option>0</option><option>1</option><option>2</option><option>3</option>
-          <option>4</option><option>5</option><option>6 и более</option>
+          <option>4</option><option>5</option><option>6 және одан көп</option>
         </select>
       </div>
     </div>
     <div class="q">
-      <span class="q-label">Стоите ли в очереди на жильё? *</span>
+      <span class="q-label">Тұрғын үй кезегінде тұрасыз ба? *</span>
       <div class="choices">
-        <label class="choice"><input type="radio" name="queue" value="Да" data-cond="queueYes"><span>Да</span></label>
-        <label class="choice"><input type="radio" name="queue" value="Нет"><span>Нет</span></label>
+        <label class="choice"><input type="radio" name="queue" value="Да" data-cond="queueYes"><span>Иә</span></label>
+        <label class="choice"><input type="radio" name="queue" value="Нет"><span>Жоқ</span></label>
       </div>
       <div class="cond" id="queueYes">
         <div class="cond-inner">
           <div class="row">
             <div>
-              <label class="q-label" for="queueYear">В каком году встали? *</label>
+              <label class="q-label" for="queueYear">Қай жылы тұрдыңыз? *</label>
               <input type="number" id="queueYear" min="1990" max="2030" placeholder="2019">
             </div>
             <div>
-              <label class="q-label" for="queueWhere">В какой очереди</label>
-              <input type="text" id="queueWhere" placeholder="Молодая семья, многодетные...">
+              <label class="q-label" for="queueWhere">Қай кезекте</label>
+              <input type="text" id="queueWhere" placeholder="Жас отбасы, көпбалалылар...">
             </div>
           </div>
         </div>
@@ -652,22 +683,22 @@ input.err,select.err{border-color:var(--red);background:#fdf1ef}
 
   <!-- VIII -->
   <section>
-    <div class="s-head"><span class="s-num">VIII</span><span class="s-title">Карты, ломбард, ИП</span></div>
+    <div class="s-head"><span class="s-num">VIII</span><span class="s-title">Карталар, ломбард, ЖК</span></div>
     <div class="q">
-      <span class="q-label">Есть ли кредитная карта (Kaspi Red, другой банк)? *</span>
+      <span class="q-label">Несие картасы бар ма (Kaspi Red, басқа банк)? *</span>
       <div class="choices">
-        <label class="choice"><input type="radio" name="ccard" value="Да" data-cond="ccardYes"><span>Да</span></label>
-        <label class="choice"><input type="radio" name="ccard" value="Нет"><span>Нет</span></label>
+        <label class="choice"><input type="radio" name="ccard" value="Да" data-cond="ccardYes"><span>Иә</span></label>
+        <label class="choice"><input type="radio" name="ccard" value="Нет"><span>Жоқ</span></label>
       </div>
       <div class="cond" id="ccardYes">
         <div class="cond-inner">
           <div class="row">
             <div>
-              <label class="q-label" for="ccardBank">Банк / продукт</label>
+              <label class="q-label" for="ccardBank">Банк / өнім</label>
               <input type="text" id="ccardBank" placeholder="Kaspi Red, Halyk Bonus...">
             </div>
             <div>
-              <label class="q-label" for="ccardLimit">Используемый лимит, ₸</label>
+              <label class="q-label" for="ccardLimit">Қолданылған лимит, ₸</label>
               <input type="number" id="ccardLimit" min="0" placeholder="150 000">
             </div>
           </div>
@@ -675,25 +706,25 @@ input.err,select.err{border-color:var(--red);background:#fdf1ef}
       </div>
     </div>
     <div class="q">
-      <span class="q-label">Были ли залоги в ломбарде (золото и т.д.)? *</span>
-      <div class="q-hint">Важно даже если уже выкупили</div>
+      <span class="q-label">Ломбардта кепілге берген болдыңыз ба (алтын және т.б.)? *</span>
+      <div class="q-hint">Қайтарып алсаңыз да маңызды</div>
       <div class="choices">
-        <label class="choice"><input type="radio" name="pawn" value="Да" data-cond="pawnYes"><span>Да</span></label>
-        <label class="choice"><input type="radio" name="pawn" value="Нет"><span>Нет</span></label>
+        <label class="choice"><input type="radio" name="pawn" value="Да" data-cond="pawnYes"><span>Иә</span></label>
+        <label class="choice"><input type="radio" name="pawn" value="Нет"><span>Жоқ</span></label>
       </div>
       <div class="cond" id="pawnYes">
         <div class="cond-inner">
           <div class="row">
             <div>
-              <label class="q-label" for="pawnWhat">Что и когда</label>
-              <input type="text" id="pawnWhat" placeholder="Золото, вес, год">
+              <label class="q-label" for="pawnWhat">Не және қашан</label>
+              <input type="text" id="pawnWhat" placeholder="Алтын, салмақ, жыл">
             </div>
             <div>
-              <label class="q-label" for="pawnNow">Сейчас</label>
+              <label class="q-label" for="pawnNow">Қазір</label>
               <select id="pawnNow">
-                <option value="">— выберите —</option>
-                <option>Всё выкуплено</option>
-                <option>Что-то ещё в ломбарде</option>
+                <option value="">— таңдаңыз —</option>
+                <option>Бәрі қайтарылды</option>
+                <option>Әлі де ломбардта нәрсе бар</option>
               </select>
             </div>
           </div>
@@ -701,23 +732,23 @@ input.err,select.err{border-color:var(--red);background:#fdf1ef}
       </div>
     </div>
     <div class="q">
-      <span class="q-label">Есть ли ИП (индивидуальный предприниматель)? *</span>
+      <span class="q-label">ЖК (жеке кәсіпкер) бар ма? *</span>
       <div class="choices">
-        <label class="choice"><input type="radio" name="ip" value="Да" data-cond="ipYes"><span>Да</span></label>
-        <label class="choice"><input type="radio" name="ip" value="Нет"><span>Нет</span></label>
+        <label class="choice"><input type="radio" name="ip" value="Да" data-cond="ipYes"><span>Иә</span></label>
+        <label class="choice"><input type="radio" name="ip" value="Нет"><span>Жоқ</span></label>
       </div>
       <div class="cond" id="ipYes">
         <div class="cond-inner">
           <div class="row">
             <div>
-              <label class="q-label" for="ipDate">Когда открыто? *</label>
+              <label class="q-label" for="ipDate">Қашан ашылған? *</label>
               <input type="month" id="ipDate">
             </div>
             <div>
-              <label class="q-label">Пришлёте годовую выписку из Gold? *</label>
+              <label class="q-label">Gold-тан жылдық анықтама жібересіз бе? *</label>
               <div class="choices">
-                <label class="choice"><input type="radio" name="ipGold" value="Да"><span>Да</span></label>
-                <label class="choice"><input type="radio" name="ipGold" value="Нет"><span>Нет</span></label>
+                <label class="choice"><input type="radio" name="ipGold" value="Да"><span>Иә</span></label>
+                <label class="choice"><input type="radio" name="ipGold" value="Нет"><span>Жоқ</span></label>
               </div>
             </div>
           </div>
@@ -728,12 +759,12 @@ input.err,select.err{border-color:var(--red);background:#fdf1ef}
 
   <!-- IX -->
   <section>
-    <div class="s-head"><span class="s-num">IX</span><span class="s-title">Дополнительно</span></div>
+    <div class="s-head"><span class="s-num">IX</span><span class="s-title">Қосымша</span></div>
     <div class="q">
-      <label class="q-label" for="comment">Комментарий / вопросы</label>
-      <textarea id="comment" placeholder="Например: первичный рынок, нужна рассрочка, интересует срок..."></textarea>
+      <label class="q-label" for="comment">Пікір / сұрақтар</label>
+      <textarea id="comment" placeholder="Мысалы: құрылыснан тапсырыс, бөліп төлеу керек, мерзім қызықтырады..."></textarea>
     </div>
-    <button type="button" class="cta" id="submitBtn">Получить итог по анкете →</button>
+    <button type="button" class="cta" id="submitBtn">Анкета бойынша қорытынды алу →</button>
     <div class="warn" id="warn"></div>
   </section>
 </form>
@@ -741,7 +772,7 @@ input.err,select.err{border-color:var(--red);background:#fdf1ef}
 <!-- RESULT -->
 <div id="result">
   <div class="score-card">
-    <div class="score-label">Предварительная оценка</div>
+    <div class="score-label">Алдын ала баға</div>
     <div class="score-val"><span id="scoreNum">0</span><small>/100</small></div>
     <div class="score-verdict" id="verdict">—</div>
     <div class="score-bar"><i id="scoreBar"></i></div>
@@ -749,25 +780,26 @@ input.err,select.err{border-color:var(--red);background:#fdf1ef}
   </div>
 
   <div class="metrics">
-    <div class="metric"><div class="k">Доход семьи (с доп. доходом)</div><div class="v green" id="mIncome">—</div></div>
-    <div class="metric"><div class="k">Платежи по кредитам</div><div class="v" id="mDebt">—</div></div>
-    <div class="metric"><div class="k">Рекомендуемый платёж (≤50% свободного)</div><div class="v" id="mPay">—</div></div>
-    <div class="metric"><div class="k">Первоначальный взнос</div><div class="v green" id="mDown">—</div></div>
-    <div class="metric"><div class="k">Стоимость квартиры</div><div class="v" id="mPrice">—</div></div>
-    <div class="metric"><div class="k">Оценка дохода к цене</div><div class="v" id="mRatio">—</div></div>
+    <div class="metric"><div class="k">Отбасы табысы (қосымша табыспен)</div><div class="v green" id="mIncome">—</div></div>
+    <div class="metric"><div class="k">Несие төлемдері</div><div class="v" id="mDebt">—</div></div>
+    <div class="metric"><div class="k">Ұсынылатын төлем (бос қалғанның ≤50%)</div><div class="v" id="mPay">—</div></div>
+    <div class="metric"><div class="k">Бастапқы жарна</div><div class="v green" id="mDown">—</div></div>
+    <div class="metric"><div class="k">Пәтер құны</div><div class="v" id="mPrice">—</div></div>
+    <div class="metric"><div class="k">Табыс пен құн салыстырмасы</div><div class="v" id="mRatio">—</div></div>
   </div>
 
   <div class="summary">
-    <h3>Сводка ответов</h3>
+    <h3>Жауаптардың түйіні</h3>
     <div id="sumBody"></div>
   </div>
 
   <div class="tg-status" id="tgStatus"></div>
 
   <div class="result-actions">
-    <button class="btn-ghost" onclick="window.print()">Печать / PDF</button>
-    <button class="btn-ghost" id="copyBtn">Скопировать текст</button>
-    <button class="btn-solid" id="againBtn">Заполнить заново</button>
+    <button class="btn-ghost" onclick="window.print()">Баспа / PDF</button>
+    <button class="btn-ghost" id="copyBtn">Мәтінді көшіру</button>
+    <button class="btn-ghost" id="waBtn">Whatsapp-қа жіберу</button>
+    <button class="btn-solid" id="againBtn">Қайта толтыру</button>
   </div>
 </div>
 
@@ -808,9 +840,9 @@ priceR.addEventListener('input',()=>price.value=priceR.value);
 price.addEventListener('input',()=>{ if(price.value) priceR.value=Math.min(+price.value,100000000); updateDownHint(); });
 function updateDownHint(){
   const h=$('#downHint'), p=+price.value, d=+down.value||0;
-  if(!p||!d){ h.textContent='Сколько готовы внести сейчас'; return; }
+  if(!p||!d){ h.textContent='Қазір қанша салуға дайынсыз'; return; }
   const pct=(d/p*100);
-  h.textContent='Это '+pct.toFixed(1)+'% от стоимости'+(pct>=20?' ✓ достаточный уровень':' (желательно от 20%)');
+  h.textContent=pct.toFixed(1)+'% құнның'+(pct>=20?' ✓ жеткілікті деңгей':' (20%-тен жөн)');
 }
 down.addEventListener('input',updateDownHint);
 
@@ -824,9 +856,9 @@ const earners=$('#earners');
 function addEarner(name='',sum=''){
   const d=document.createElement('div');
   d.className='earner';
-  d.innerHTML=`<input type="text" class="e-name" placeholder="Кто зарабатывает (ФИО / роль)" value="${name}">
-    <input type="number" class="e-sum" placeholder="Доход, ₸" value="${sum}">
-    <button type="button" class="del" title="Удалить">×</button>`;
+  d.innerHTML=`<input type="text" class="e-name" placeholder="Кім табады (аты-жөні / рөлі)" value="${name}">
+    <input type="number" class="e-sum" placeholder="Табыс, ₸" value="${sum}">
+    <button type="button" class="del" title="Жою">×</button>`;
   d.querySelector('.del').onclick=()=>{d.remove();calcTotal();};
   d.querySelectorAll('input').forEach(i=>i.addEventListener('input',calcTotal));
   earners.appendChild(d);
@@ -844,8 +876,9 @@ addEarner('Я','');
 function progress(){
   const req=[
     $('#fio').value.trim(), $('#phone').value.trim(),
-    price.value, $('#district').value, $('#people').value,
+    price.value, $('#people').value,
     $('#dependents').value!=='', +$('#down').value>=0&&$('#down').value!=='',
+    +$('#ownPledge').value>=0&&$('#ownPledge').value!=='', $('#ownPledgeSource').value.trim(),
     $('input[name=otbasy]:checked'), $('input[name=credit]:checked'),
     $('input[name=delay]:checked'), $('input[name=loans]:checked'),
     $('input[name=own]:checked'),
@@ -868,43 +901,44 @@ $('#form').addEventListener('change',progress);
 function validate(){
   const missing=[];
   const chk=(cond,label)=>{ if(!cond) missing.push(label); };
-  chk($('#fio').value.trim(),'ФИО');
+  chk($('#fio').value.trim(),'Аты-жөні');
   chk($('#phone').value.trim(),'Телефон');
-  chk(+price.value>0,'Стоимость квартиры');
-  chk($('#district').value,'Район');
-  chk($('#people').value,'Число проживающих');
-  chk($('#dependents').value!=='','Иждивенцы');
-  chk($('#down').value!==''&&+$('#down').value>=0,'Первоначальный взнос');
-  chk($('input[name=otbasy]:checked'),'Счёт в Отбасы банке');
-  chk($('input[name=credit]:checked'),'Кредитная история');
+  chk(+price.value>0,'Пәтер құны');
+  chk($('#people').value,'Тұратын адам саны');
+  chk($('#dependents').value!=='','Асыраушылар');
+  chk($('#down').value!==''&&+$('#down').value>=0,'Бастапқы жарна');
+  chk($('#ownPledge').value!==''&&+$('#ownPledge').value>=0,'Бастапқы жарнаға жеке қаражат сомасы');
+  chk($('#ownPledgeSource').value.trim(),'Қаражат көздері');
+  chk($('input[name=otbasy]:checked'),'Отбасы банкіндегі шот');
+  chk($('input[name=credit]:checked'),'Несие тарихы');
   chk($('input[name=delay]:checked'),'Просрочки');
-  chk($('input[name=loans]:checked'),'Действующие кредиты');
-  if(val('loans')==='Да') chk(+$('#loanPay').value>0,'Платёж по кредитам');
-  chk($('input[name=own]:checked'),'Своё жильё');
-  chk($('input[name=pledge]:checked'),'Залог');
-  chk($('input[name=benefit]:checked'),'Льготная группа');
-  chk(calcTotal()>0,'Доход семьи');
-  chk($('input[name=extra]:checked'),'Дополнительный доход');
-  if(val('extra')==='Да') chk(+$('#extraSum').value>0,'Сумма доп. дохода');
-  chk($('#city').value.trim(),'Город');
-  chk($('#reg').value.trim(),'Прописка');
-  chk($('input[name=work]:checked'),'Работаете или нет');
+  chk($('input[name=loans]:checked'),'Ағымдағы несиелер');
+  if(val('loans')==='Да') chk(+$('#loanPay').value>0,'Несие бойынша төлем');
+  chk($('input[name=own]:checked'),'Өз тұрғын үйі');
+  chk($('input[name=pledge]:checked'),'Кепіл');
+  chk($('input[name=benefit]:checked'),'Жеңілдік тобы');
+  chk(calcTotal()>0,'Отбасы табысы');
+  chk($('input[name=extra]:checked'),'Қосымша табыс');
+  if(val('extra')==='Да') chk(+$('#extraSum').value>0,'Қосымша табыс сомасы');
+  chk($('#city').value,'Қала');
+  chk($('#reg').value.trim(),'Тіркелген мекенжай');
+  chk($('input[name=work]:checked'),'Жұмыс жасайсыз ба');
   if(val('work')==='Да'){
-    chk($('#jobPlace').value.trim(),'Место работы');
-    chk($('input[name=pension]:checked'),'Пенсионные отчисления');
+    chk($('#jobPlace').value.trim(),'Жұмыс орны');
+    chk($('input[name=pension]:checked'),'Зейнетақы аударымдары');
   }
   chk($('input[name=zag]:checked'),'ЗАГС');
-  if(val('zag')==='Да') chk($('input[name=spPension]:checked'),'Пенсионные отчисления супруга(и)');
-  chk($('#kids').value!=='','Сколько детей');
-  chk($('#kids18').value!=='','Дети до 18 лет');
-  chk($('input[name=queue]:checked'),'Очередь на жильё');
-  if(val('queue')==='Да') chk($('#queueYear').value,'Год постановки в очередь');
-  chk($('input[name=ccard]:checked'),'Кредитная карта');
-  chk($('input[name=pawn]:checked'),'Залоги в ломбарде');
-  chk($('input[name=ip]:checked'),'ИП');
+  if(val('zag')==='Да') chk($('input[name=spPension]:checked'),'Жұбай зейнетақы аударымдары');
+  chk($('#kids').value!=='','Неше бала');
+  chk($('#kids18').value!=='','18 жасқа дейінгі балалар');
+  chk($('input[name=queue]:checked'),'Тұрғын үй кезегі');
+  if(val('queue')==='Да') chk($('#queueYear').value,'Кезекке тұрған жыл');
+  chk($('input[name=ccard]:checked'),'Несие картасы');
+  chk($('input[name=pawn]:checked'),'Ломбардтағы кепілдер');
+  chk($('input[name=ip]:checked'),'ЖК');
   if(val('ip')==='Да'){
-    chk($('#ipDate').value,'Дата открытия ИП');
-    chk($('input[name=ipGold]:checked'),'Выписка из Gold');
+    chk($('#ipDate').value,'ЖК ашылған күні');
+    chk($('input[name=ipGold]:checked'),'Gold анықтамасы');
   }
   return missing;
 }
@@ -912,12 +946,14 @@ function validate(){
 /* ---- build result ---- */
 function val(name){ const el=$(`input[name=${name}]:checked`); return el?el.value:'—'; }
 function txt(id){ const el=$('#'+id); return el?el.value.trim():''; }
+const KV={'Да':'Иә','Нет':'Жоқ','Хорошее':'Жақсы','Удовлетворительное':'Қанағаттанарлық','Плохое':'Жаман'};
+function vt(n){return KV[val(n)]||val(n);}
 
 $('#submitBtn').onclick=()=>{
   const missing=validate();
   const w=$('#warn');
   if(missing.length){
-    w.textContent='Заполните: '+missing.join(', ')+'.';
+    w.textContent='Толтырыңыз: '+missing.join(', ')+'.';
     w.classList.add('show');
     w.scrollIntoView({behavior:'smooth',block:'center'});
     return;
@@ -933,61 +969,60 @@ $('#submitBtn').onclick=()=>{
   const notes=[];
 
   // кредиты, иждивенцы, взнос, доп. доход
-  const debtPay=val('loans')==='Да'?(+$('#loanPay').value||0):0;
-  const debtTotal=val('loans')==='Да'?(+$('#loanTotal').value||0):0;
-  const freeIncome=Math.max(0,income-debtPay);
   const downV=+$('#down').value||0;
-  const downPct=priceV>0?(downV/priceV*100):0;
+  const opV=+$('#ownPledge').value||0, opS=$('#ownPledgeSource').value.trim();
+  if(opV<downV){ w.textContent='Жеке қаражат сомасы бастапқы жарна сомасынан кем болуы мүмкін емес.'; w.classList.add('show'); w.scrollIntoView({behavior:'smooth',block:'center'}); return; }
+  if(opV>=downV && downV>0){ score+=3; notes.push('Бастапқы жарнаға жеке қаражат — '+fmt(opV)+' ₸ ('+(opS||'көрсетілген')+').'); }
   const depRaw=$('#dependents').value;
   const deps=depRaw?Math.min(parseInt(depRaw)||0,5):0;
   const residentsRaw=$('#people').value;
   const residents=residentsRaw?(parseInt(residentsRaw)||1):1;
   const perCapita=freeIncome>0?freeIncome/(residents+deps):0;
 
-  if(downPct>=20){score+=10; notes.push('Первоначальный взнос '+downPct.toFixed(1)+'% — достаточный уровень для одобрения.');}
-  else if(downPct>=10){score+=5; notes.push('Первоначальный взнос '+downPct.toFixed(1)+'% — приемлемо, но от 20% условия будут лучше.');}
-  else if(downV>0){score+=2; notes.push('Первоначальный взнос менее 10% — рекомендуется увеличить для получения одобрения.');}
-  else notes.push('Первоначальный взнос не указан — большинство программ требуют минимум 10–20% от стоимости.');
+  if(downPct>=20){score+=10; notes.push('Бастапқы жарна '+downPct.toFixed(1)+'% — бекітуге жеткілікті деңгей.');}
+  else if(downPct>=10){score+=5; notes.push('Бастапқы жарна '+downPct.toFixed(1)+'% — қабылданады, бірақ 20%-тен жоғары шарттар жақсы болады.');}
+  else if(downV>0){score+=2; notes.push('Бастапқы жарна 10%-дан аз — бекіту үшін ұлғайту ұсынылады.');}
+  else notes.push('Бастапқы жарна көрсетілмеген — көп бағдарламалар құнның кемінде 10–20% талап етеді.');
 
   if(debtPay>0){
     const dti=income>0?debtPay/income:0;
-    if(dti<=0.3){score+=5; notes.push('Платежи по действующим кредитам составляют '+Math.round(dti*100)+'% дохода — долговая нагрузка в норме.');}
-    else if(dti>0.5){score-=5; notes.push('Платежи по кредитам — '+Math.round(dti*100)+'% дохода: долговая нагрузка высокая, сумма нового платежа будет ограничена.');}
+    if(dti<=0.3){score+=5; notes.push('Ағымдағы несие төлемдері '+Math.round(dti*100)+'% табыс — қарыз жүктемесі қалыпты.');}
+    else if(dti>0.5){score-=5; notes.push('Несие төлемдері — '+Math.round(dti*100)+'% табыс: қарыз жүктемесі жоғары, жаңа төлем сомасы шектеледі.');}
   } else score+=5;
 
   if(deps>0 && perCapita>0 && perCapita<100000)
-    notes.push('Доход на человека (с учётом '+deps+' иждивенц'+(deps===1?'а':'ев')+') ниже 100 000 ₸ — учтите при расчёте доступного платежа.');
+    notes.push('Адам басына табыс ('+deps+' асыраушы) 100 000 ₸-ден төмен — қолжетімді төлемді есептегенде ескеріңіз.');
 
   // работа, семья, очередь, карты, ломбард, ИП
   if(val('work')==='Да'){
     score+=5;
-    notes.push('Трудоустройство подтверждено'+(val('pension')==='Да'?' — есть пенсионные отчисления с работы (сильный плюс к подтверждению дохода)':'')+'.');
-  } else notes.push('Нет официальной работы — доход необходимо подтвердить иначе (выписки, ИП, поручитель).');
+    notes.push('Жұмыспен қамтылуы расталған'+(val('pension')==='Да'?' — жұмыстан зейнетақы аударымдары бар (табысты растауға күшті плюс)':'')+'.');
+  } else notes.push('Ресми жұмыс жоқ — табысты басқаша растау қажет (анықтамалар, ЖК, кепіл адам).');
 
   if(val('zag')==='Да' && val('spPension')==='Да') score+=3;
 
   const kids18v=parseInt($('#kids18').value)||0;
-  if(kids18v>=3) notes.push('Детей до 18 лет: '+kids18v+' — при необходимости уточните программы для многодетных семей.');
+  if(kids18v>=3) notes.push('18 жасқа дейінгі балалар: '+kids18v+' — қажет болса көпбалалы отбасыларға арналған бағдарламаларды нақтылаңыз.');
 
-  if(val('queue')==='Да'){ score+=5; notes.push('Стоите в очереди на жильё с '+($('#queueYear').value||'—')+' г. ('+($('#queueWhere').value||'очередь')+') — возможны льготные условия и субсидии.'); }
+  if(val('queue')==='Да'){ score+=5; notes.push('Тұрғын үй кезегінде '+($('#queueYear').value||'—')+' жылдан бері тұрсыз ('+($('#queueWhere').value||'кезек')+') — жеңілдіктер мен субсидиялар мүмкін.'); }
 
   if(val('ccard')==='Да'){
     const lim=+$('#ccardLimit').value||0;
-    notes.push('Кредитная карта'+($('#ccardBank').value?' — '+$('#ccardBank').value:'')+' учитывается как долговая нагрузка'+(lim?': использовано '+fmt(lim)+' ₸':'')+'.');
+    notes.push('Несие картасы'+($('#ccardBank').value?' — '+$('#ccardBank').value:'')+' қарыз жүктемесі ретінде ескеріледі'+(lim?': қолданылғаны '+fmt(lim)+' ₸':'')+'.');
   }
   if(val('pawn')==='Да'){
-    if($('#pawnNow').value==='Что-то ещё в ломбарде') notes.push('Часть имущества ещё в ломбарде — рекомендуется погасить до подачи заявки.');
-    else notes.push('Были залоги в ломбарде — банк учитывает даже выкупленные: это важно для кредитной истории.');
+    if($('#pawnNow').value==='Әлі де ломбардта нәрсе бар') notes.push('Кепіл затының бір бөлігі әлі ломбардта — өтінім беру алдында төлеу ұсынылады.');
+    else notes.push('Ломбардта кепіл болған — банк қайтарылғандарын да ескереді: бұл несие тарихы үшін маңызды.');
   }
 
   if(val('ip')==='Да'){
     const opened=$('#ipDate').value;
     if(opened){
       const monthsAge=(Date.now()-new Date(opened).getTime())/(1000*60*60*24*30.4);
-      if(monthsAge>=12){score+=5; notes.push('ИП работает более года — годовая выписка из Gold подтвердит стабильный доход.');}
-      else {score+=2; notes.push('ИП открыт недавно — решение будет зависеть от оборотов по выписке из Gold.');}
+      if(monthsAge>=12){score+=5; notes.push('ЖК бір жылдан астам жұмыс істейді — Gold-тан жылдық анықтама тұрақты табысты растайды.');}
+      else {score+=2; notes.push('ЖК жаңа ашылған — шешім Gold анықтамасындағы айналымға байланысты болады.');}
     }
-    if(val('ipGold')==='Нет') notes.push('Годовая выписка из Gold не будет предоставлена — без неё доход ИП подтвердить сложно.');
+    if(val('ipGold')==='Нет') notes.push('Gold-тан жылдық анықтама берілмейді — онсыз ЖК табысын растау қиын.');
   }
 
   // Отбасы
@@ -996,32 +1031,32 @@ $('#submitBtn').onclick=()=>{
     const sum=+txt('otbSum')||0;
     score+=15;
     if(sum>=3000000) score+=5;
-    if(['1–3 года','Более 3 лет'].includes($('#otbTerm').value)) score+=5;
-    notes.push('Наличие счёта в Отбасы банке и накопительная дисциплина учитываются положительно.');
-  } else notes.push('Счёт в Отбасы банке отсутствует — его открытие улучшает условия по программе.');
+    if(['1–3 жыл','3 жылдан астам'].includes($('#otbTerm').value)) score+=5;
+    notes.push('Отбасы банкіндегі шоттың болуы және жинақтау тәртібі оң бағаланады.');
+  } else notes.push('Отбасы банкінде шот жоқ — оны ашу бағдарлама шарттарын жақсартады.');
 
   // льгота
-  if(val('benefit')==='Да'){ score+=10; notes.push('Льготная категория ('+($('#bCat').value||'указано')+'): возможны субсидия, сниженная ставка и уменьшенный первоначальный взнос.'); }
+  if(val('benefit')==='Да'){ score+=10; notes.push('Жеңілдік санаты ('+($('#bCat').value||'көрсетілген')+'): субсидия, төмендетілген мөлшерлеме және азайтылған бастапқы жарна мүмкін.'); }
 
   // доход
   const ratio=income>0?priceV/income:0;
-  if(ratio<=10) score+=10; else if(ratio<=20) score+=5; else {score+=0; notes.push('Стоимость жилья превышает 20 совокупных месячных доходов семьи — рассмотрите бюджет ниже или увеличьте первоначальный взнос.');}
-  if(income>0 && priceV>0 && priceV/income>40) notes.push('Отношение цены к доходу выше 40 — заявка выглядит рискованной без крупного первоначального взноса.');
+  if(ratio<=10) score+=10; else if(ratio<=20) score+=5; else {score+=0; notes.push('Тұрғын үй құны отбасының жалпы айлық табысының 20 есінен асады — бюджетті төмендетіңіз немесе бастапқы жарнаны ұлғайтыңыз.');}
+  if(income>0 && priceV>0 && priceV/income>40) notes.push('Құн мен табыс арақатынасы 40-тан жоғары — ірі бастапқы жарнасыз өтінім қауіпті көрінеді.');
 
-  if(val('pledge')==='Да') notes.push('Наличие залога увеличивает долговую нагрузку — учтите это при оценке платёжеспособности.');
-  if(txt('dClosed')==='Нет, есть текущие') notes.push('Есть незакрытые просрочки — до подачи заявки необходимо погасить задолженность.');
+  if(val('pledge')==='Да') notes.push('Кепілдіктің болуы қарыз жүктемесін арттырады — төлеу қабілетін бағалағанда ескеріңіз.');
+  if(txt('dClosed')==='Жоқ, ағымдағылар бар') notes.push('Жабылмаған кешірулер бар — өтінім беру алдында қарызды өтеу қажет.');
 
   score=Math.max(0,Math.min(100,score));
 
   let verdict,note;
-  if(score>=75){verdict='Высокая готовность — рекомендуем подавать заявку'; note='Финансовый профиль сильный. Соберите справки о доходе и подтверждение первоначального взноса.';}
-  else if(score>=50){verdict='Умеренная готовность — заявка рассмотрима'; note='Шансы хорошие. Усилите профиль: пополните счёт в Отбасы банке, закройте мелкие обязательства, подготовьте документы по доходу.';}
-  else if(score>=30){verdict='Низкая готовность — нужна доработка'; note='Рекомендуем: закрыть просрочки, увеличить первоначальный взнос и/или доход семьи, рассмотреть льготные программы.';}
-  else {verdict='Пока не готовы к заявке'; note='Присутствуют серьёзные риски (кредитная история / просрочки / долговая нагрузка). Сначала стабилизируйте обязательства.';}
+  if(score>=75){verdict='Жоғары дайындық — өтінім беруді ұсынамыз'; note='Қаржы профилі күшті. Табыс туралы анықтамалар мен бастапқы жарнаны растайтын құжаттар жинаңыз.';}
+  else if(score>=50){verdict='Орташа дайындық — өтінім қаралады'; note='Мүмкіндіктер жақсы. Профильді күшейтіңіз: Отбасы банкіндегі шотты толықтырыңыз, шағын міндеттемелерді жабыңыз, табыс құжаттарын дайындаңыз.';}
+  else if(score>=30){verdict='Төмен дайындық — жетілдіру керек'; note='Ұсыныстар: кешіктірімдерді жабыңыз, бастапқы жарнаны және/немесе отбасы табысын арттырыңыз, жеңілдік бағдарламаларын қарастырыңыз.';}
+  else {verdict='Әзірге өтінімге дайын емес'; note='Маңызды тәуекелдер бар (несие тарихы / кешіктірімдер / қарыз жүктемесі). Алдымен міндеттемелерді тұрақтандырыңыз.';}
 
   $('#scoreNum').textContent=score;
   $('#verdict').textContent=verdict;
-  $('#scoreNote').textContent=notes.join(' ')||'Базовая оценка построена на кредитной истории, доходе и накоплениях.';
+  $('#scoreNote').textContent=notes.join(' ')||'Базалық баға несие тарихы, табыс және жинақтарға негізделген.';
   setTimeout(()=>$('#scoreBar').style.width=score+'%',60);
 
   const monthlyPay=Math.round(freeIncome*0.5);
@@ -1042,61 +1077,62 @@ $('#submitBtn').onclick=()=>{
   }).filter(Boolean).join('<br>')||'—';
 
   $('#sumBody').innerHTML=
-    G('I. Контактные данные',[
-      ['ФИО',txt('fio')],['Телефон',txt('phone')],['Дата рождения',txt('birth')],['E-mail',txt('email')]
+    G('I. Байланыс деректері',[
+      ['Аты-жөні',txt('fio')],['Телефон',txt('phone')],['Туған күні',txt('birth')],['E-mail',txt('email')]
     ])+
-    G('II. Параметры квартиры',[
-      ['Стоимость',fmt(priceV)+' ₸'],['Район',$('#district').value],
-      ['Проживать будет чел.',$('#people').value],['Иждивенцев',depRaw],
-      ['Первоначальный взнос',fmt(downV)+' ₸'+(downPct?' ('+downPct.toFixed(1)+'%)':'')],
-      ['Ориентир по доходу (мес. платёж)',fmt(monthlyPay)+' ₸']
+      G('II. Пәтер параметрлері',[
+      ['Құн',fmt(priceV)+' ₸'],
+      ['Тұратын адамдар',$('#people').value],['Асыраушылар',depRaw],
+      ['Бастапқы жарна',fmt(downV)+' ₸'+(downPct?' ('+downPct.toFixed(1)+'%)':'')],
+      ['Жеке қаражат на ПВ',fmt(opV)+' ₸'+(opS? ' — '+opS:'')],
+      ['Табыс бойынша ориентир (айлық төлем)',fmt(monthlyPay)+' ₸']
     ])+
-    G('III. Отбасы банк',[
-      ['Счёт',otb],
-      ...(otb==='Да'?[['Сумма',fmt(txt('otbSum'))+' ₸'],['Срок хранения',$('#otbTerm').value||'—'],['Вознаграждение',fmt(txt('otbReward'))+' ₸/мес']]:[])
+    G('III. Отбасы банкі',[
+      ['Шот',KV[otb]||otb],
+      ...(otb==='Да'?[['Сума',fmt(txt('otbSum'))+' ₸'],['Сақтау мерзімі',$('#otbTerm').value||'—'],['Сыйақы',fmt(txt('otbReward'))+' ₸/мес']]:[])
     ])+
-    G('IV. Кредитная история',[
-      ['Состояние',val('credit')],['Просрочки',val('delay')],
-      ...(val('delay')==='Да'?[['Количество',txt('dCount')],['Период',txt('dPeriod')],['Сумма',fmt(txt('dSum'))+' ₸'],['Закрыты?',txt('dClosed')]]:[]),
-      ['Действующие кредиты',val('loans')],
-      ...(val('loans')==='Да'?[['Платёж в месяц',fmt(txt('loanPay'))+' ₸'],['Остаток долга',fmt(txt('loanTotal'))+' ₸'],['Количество',txt('loanCount')]]:[])
+    G('IV. Несие тарихы',[
+      ['Күйі',vt('credit')],['Кешірулер',vt('delay')],
+      ...(val('delay')==='Да'?[['Саны',txt('dCount')],['Кезең',txt('dPeriod')],['Сума',fmt(txt('dSum'))+' ₸'],['Жабылды ма?',txt('dClosed')]]:[]),
+      ['Ағымдағы несиелер',vt('loans')],
+      ...(val('loans')==='Да'?[['Айлық төлем',fmt(txt('loanPay'))+' ₸'],['Остаток долга',fmt(txt('loanTotal'))+' ₸'],['Саны',txt('loanCount')]]:[])
     ])+
-    G('V. Жильё, залог, льготы',[
-      ['Своё жильё',val('own')],
-      ...(val('own')==='Да'?[['Адрес',txt('ownAddr')],['Площадь',txt('ownArea')+' м²'],['Собственники',txt('ownOwner')]]:[]),
-      ['Залог',val('pledge')],
-      ...(val('pledge')==='Да'?[['Предмет залога',txt('plWhat')],['Кредитор',txt('plWho')]]:[]),
-      ['Льготная группа',val('benefit')],
-      ...(val('benefit')==='Да'?[['Категория',$('#bCat').value],['Документ',txt('bDoc')]]:[])
+    G('V. Тұрғын үй, кепіл, жеңілдіктер',[
+      ['Өз тұрғын үйі',vt('own')],
+      ...(val('own')==='Да'?[['Мекенжай',txt('ownAddr')],['Ауданы',txt('ownArea')+' м²'],['Иегерлер',txt('ownOwner')]]:[]),
+      ['Кепіл',vt('pledge')],
+      ...(val('pledge')==='Да'?[['Кепіл заты',txt('plWhat')],['Кредитор',txt('plWho')]]:[]),
+      ['Жеңілдік тобы',vt('benefit')],
+      ...(val('benefit')==='Да'?[['Санат',$('#bCat').value],['Документ',txt('bDoc')]]:[])
     ])+
-    G('VI. Доходы семьи',[
-      ['Состав и доходы',earnersList],
-      ['Доп. доход',val('extra')+(val('extra')==='Да'?': '+fmt(txt('extraSum'))+' ₸/мес ('+(txt('extraWhat')||'источник не указан')+')':'')],
-      ['Итого',fmt(income)+' ₸/мес'],
-      ['Иждивенцев',depRaw],
-      ['Действующие платежи по кредитам',fmt(debtPay)+' ₸/мес'],
-      ['Свободный доход после платежей',fmt(freeIncome)+' ₸/мес'],
-      ['Доход на человека',fmt(Math.round(perCapita))+' ₸']
+    G('VI. Отбасы табыстары',[
+      ['Құрам және табыстар',earnersList],
+      ['Қосымша табыс',vt('extra')+(val('extra')==='Да'?': '+fmt(txt('extraSum'))+' ₸/мес ('+(txt('extraWhat')||'көзі көрсетілмеген')+')':'')],
+      ['Жалпы',fmt(income)+' ₸/мес'],
+      ['Асыраушылар',depRaw],
+      ['Ағымдағы несие төлемдері',fmt(debtPay)+' ₸/мес'],
+      ['Төлемнен кейінгі бос табыс',fmt(freeIncome)+' ₸/мес'],
+      ['Адам басына табыс',fmt(Math.round(perCapita))+' ₸']
     ])+
-    G('VII. Работа и семья',[
-      ['Город',txt('city')],['Прописка',txt('reg')],
-      ['Работаете',val('work')],
-      ...(val('work')==='Да'?[['Место работы',txt('jobPlace')],['Пенсионные отчисления',val('pension')]]:[]),
-      ['ЗАГС',val('zag')],
-      ...(val('zag')==='Да'?[['Пенсионные отчисления супруга(и)',val('spPension')],['Доход супруга(и)',fmt(txt('spIncome'))+' ₸/мес']]:[]),
-      ['Всего детей',$('#kids').value],['Детей до 18 лет',$('#kids18').value],
-      ['Очередь на жильё',val('queue')],
-      ...(val('queue')==='Да'?[['Год постановки',txt('queueYear')],['Очередь',txt('queueWhere')]]:[])
+    G('VII. Жұмыс және отбасы',[
+      ['Қала',txt('city')],['Тіркелген мекенжай',txt('reg')],
+      ['Жұмыс жасайсыз',vt('work')],
+      ...(val('work')==='Да'?[['Жұмыс орны',txt('jobPlace')],['Зейнетақы аударымдары',vt('pension')]]:[]),
+      ['ЗАГС',vt('zag')],
+      ...(val('zag')==='Да'?[['Жұбай зейнетақы аударымдары',vt('spPension')],['Жұбайдың табысы',fmt(txt('spIncome'))+' ₸/мес']]:[]),
+      ['Барлық балалар',$('#kids').value],['18 жасқа дейінгі балалар',$('#kids18').value],
+      ['Тұрғын үй кезегі',vt('queue')],
+      ...(val('queue')==='Да'?[['Кезекке тұрған жыл',txt('queueYear')],['Кезек',txt('queueWhere')]]:[])
     ])+
-    G('VIII. Карты, ломбард, ИП',[
-      ['Кредитная карта',val('ccard')],
-      ...(val('ccard')==='Да'?[['Банк / продукт',txt('ccardBank')],['Используемый лимит',fmt(txt('ccardLimit'))+' ₸']]:[]),
-      ['Залоги в ломбарде',val('pawn')],
-      ...(val('pawn')==='Да'?[['Что и когда',txt('pawnWhat')],['Статус',$('#pawnNow').value]]:[]),
-      ['ИП',val('ip')],
-      ...(val('ip')==='Да'?[['Открыто',txt('ipDate')],['Выписка из Gold будет',val('ipGold')]]:[])
+    G('VIII. Карталар, ломбард, ЖК',[
+      ['Несие картасы',vt('ccard')],
+      ...(val('ccard')==='Да'?[['Банк / өнім',txt('ccardBank')],['Қолданылған лимит',fmt(txt('ccardLimit'))+' ₸']]:[]),
+      ['Ломбардтағы кепілдер',vt('pawn')],
+      ...(val('pawn')==='Да'?[['Не және қашан',txt('pawnWhat')],['Күйі',$('#pawnNow').value]]:[]),
+      ['ЖК',vt('ip')],
+      ...(val('ip')==='Да'?[['Ашылғаны',txt('ipDate')],['Gold анықтамасы болады',vt('ipGold')]]:[])
     ])+
-    (txt('comment')?G('IX. Комментарий',[['Заметка',txt('comment')]]):'');
+    (txt('comment')?G('IX. Пікір',[['Ескерту',txt('comment')]]):'');
 
   $('#form').style.display='none';
   $('header').style.display='none';
@@ -1106,22 +1142,22 @@ $('#submitBtn').onclick=()=>{
 
   // отправка итога в Telegram
   const tg=$('#tgStatus');
-  tg.className='tg-status wait'; tg.textContent='Отправка результата менеджеру...';
-  const tgMsg='📥 Новая анкета на жильё\n\n'
-    +'Оценка: '+score+'/100 — '+verdict+'\n'
-    +'ФИО: '+txt('fio')+'\n'
+  tg.className='tg-status wait'; tg.textContent='Нәтиже менеджерге жіберілуде...';
+  const tgMsg='📥 Жаңа тұрғын үй анкетасы\n\n'
+    +'Баға: '+score+'/100 — '+verdict+'\n'
+    +'Аты-жөні: '+txt('fio')+'\n'
     +'Телефон: '+txt('phone')+'\n'
-    +'Квартира: '+fmt(priceV)+' ₸, '+$('#district').value+'\n'
-    +'Взнос: '+fmt(downV)+' ₸ ('+downPct.toFixed(1)+'%)\n'
-    +'Доход семьи: '+fmt(income)+' ₸/мес\n'
-    +'Платежи по кредитам: '+fmt(debtPay)+' ₸/мес\n'
-    +'Свободный доход: '+fmt(freeIncome)+' ₸/мес\n'
-    +'Иждивенцев: '+depRaw+'\n\n'
-    +'—— Сводка ответов ——\n'+$('.summary').innerText;
+    +'Пәтер: '+fmt(priceV)+' ₸, '+$('#district').value+'\n'
+    +'Жарна: '+fmt(downV)+' ₸ ('+downPct.toFixed(1)+'%)\n'
+    +'Отбасы табысы: '+fmt(income)+' ₸/мес\n'
+    +'Несие төлемдері: '+fmt(debtPay)+' ₸/мес\n'
+    +'Бос табыс: '+fmt(freeIncome)+' ₸/мес\n'
+    +'Асыраушылар: '+depRaw+'\n\n'
+    +'—— Жауаптардың түйіні ——\n'+$('.summary').innerText;
   sendTelegram(tgMsg).then(s=>{
-    if(s==='ok'){ tg.className='tg-status ok'; tg.textContent='✓ Результат отправлен менеджеру в Telegram'; }
+    if(s==='ok'){ tg.className='tg-status ok'; tg.textContent='✓ Нәтиже Telegram арқылы менеджерге жіберілді'; }
     else if(s==='unconfigured'){ tg.className='tg-status'; tg.style.display='none'; }
-    else { tg.className='tg-status fail'; tg.textContent='Не удалось отправить в Telegram (проверьте интернет)'; }
+    else { tg.className='tg-status fail'; tg.textContent='Telegram-ке жіберу мүмкін болмады (интернетті тексеріңіз)'; }
   });
 };
 
@@ -1129,8 +1165,30 @@ $('#submitBtn').onclick=()=>{
 $('#againBtn').onclick=()=>location.reload();
 $('#copyBtn').onclick=()=>{
   const t=$('.summary').innerText.replace(/\n{3,}/g,'\n\n');
-  const head=`Оценка: ${$('#scoreNum').textContent}/100 — ${$('#verdict').textContent}\n\n`;
-  navigator.clipboard.writeText(head+t).then(()=>{$('#copyBtn').textContent='Скопировано!';setTimeout(()=>$('#copyBtn').textContent='Скопировать текст',1800);});
+  const head=`Баға: ${$('#scoreNum').textContent}/100 — ${$('#verdict').textContent}\n\n`;
+  navigator.clipboard.writeText(head+t).then(()=>{$('#copyBtn').textContent='Көшірілді!';setTimeout(()=>$('#copyBtn').textContent='Мәтінді көшіру',1800);});
+};
+$('#waBtn').onclick=()=>{
+  const priceV2=+price.value, downV2=+$('#down').value||0, opV2=+$('#ownPledge').value||0, opS2=$('#ownPledgeSource').value.trim();
+  const income2=calcTotal(), debtPay2=val('loans')==='Да'?(+$('#loanPay').value||0):0;
+  const freeIncome2=Math.max(0,income2-debtPay2);
+  const monthlyPay2=Math.round(freeIncome2*0.5);
+  const downPct2=priceV2>0?(downV2/priceV2*100):0;
+  const text = `Анкета Отбасы банк
+Қарыз алушы: ${txt('fio')||'—'}
+Телефон: ${txt('phone')||'—'}
+Қала/облыс: ${$('#city').value||'—'}
+
+Пәтер құны: ${fmt(priceV2)} ₸
+Бастапқы жарна: ${fmt(downV2)} ₸ (${downPct2.toFixed(1)}%)
+Жеке қаражат ПВ: ${fmt(opV2)} ₸ (${opS2||'—'})
+
+Отбасы табысы: ${fmt(income2)} ₸/мес
+Несиелік жүктеме: ${fmt(debtPay2)} ₸/мес
+Ұсынылатын айлық төлем (≤50%): ${fmt(monthlyPay2)} ₸
+
+Алдын ала баға: ${$('#scoreNum').textContent}/100 — ${$('#verdict').textContent}`;
+  window.open('https://wa.me/77771594325?text='+encodeURIComponent(text),'_blank');
 };
 
 progress();

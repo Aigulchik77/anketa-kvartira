@@ -3,7 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Анкета — тұрғын үй алуға өтінім</title>
+<title>Нурсауле · Отбасы банк — анкета</title>
+<meta name="description" content="Нурсауле · Отбасы банк — онлайн-анкета заёмщика: расчёт первоначального взноса, платёжеспособности и предварительная оценка заявки.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Нурсауле · Отбасы банк">
+<meta property="og:title" content="Нурсауле · Отбасы банк — анкета заёмщика">
+<meta property="og:description" content="Заполните анкету за 3 минуты: первоначальный взнос, доход семьи, предварительная оценка и рекомендации.">
+<meta name="theme-color" content="#0e5b45">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;1,6..96,400&family=Commissioner:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -260,7 +266,7 @@ input.err,select.err{border-color:var(--red);background:#fdf1ef}
 <div class="wrap">
 
 <header>
-  <div class="eyebrow">Отбасы банк · тұрғын үйге өтінім</div>
+  <div class="eyebrow">Нурсауле · Отбасы банк</div>
   <h1>Қарыз алушы <em>анкетасы</em></h1>
   <p class="sub">Сұрақтарға жауап беріңіз — соңында жауаптар түйінін, алдын ала төлеу қабілетінің бағасын және ұсыныс аласыз.</p>
   <a class="lang-link" href="index.html">Русский</a>
@@ -309,25 +315,13 @@ input.err,select.err{border-color:var(--red);background:#fdf1ef}
         <input type="number" id="price" min="0" placeholder="25 000 000">
       </div>
     </div>
-    <div class="q row">
-      <div>
-        <label class="q-label" for="district">Аудан *</label>
-        <select id="district">
-          <option value="">— таңдаңыз —</option>
-          <option>Алматы ауданы</option><option>Медеу ауданы</option><option>Бостандық ауданы</option>
-          <option>Нұрәлі / Приморский ауданы</option><option>Түркісібі ауданы</option>
-          <option>Әуезов ауданы</option><option>Жетісу ауданы</option><option>Наурызбай ауданы</option>
-          <option>Есік / қала маңы</option><option>Басқа қала</option>
-        </select>
-      </div>
-      <div>
-        <label class="q-label" for="people">Неше адам тұрады *</label>
-        <select id="people">
-          <option value="">— таңдаңыз —</option>
-          <option>1</option><option>2</option><option>3</option><option>4</option>
-          <option>5</option><option>6 және одан көп</option>
-        </select>
-      </div>
+    <div class="q">
+      <label class="q-label" for="people">Неше адам тұрады *</label>
+      <select id="people">
+        <option value="">— таңдаңыз —</option>
+        <option>1</option><option>2</option><option>3</option><option>4</option>
+        <option>5</option><option>6 және одан көп</option>
+      </select>
     </div>
     <div class="q row">
       <div>
@@ -343,6 +337,18 @@ input.err,select.err{border-color:var(--red);background:#fdf1ef}
         <label class="q-label" for="down">Бастапқы жарна, ₸ *</label>
         <div class="q-hint" id="downHint">Қазір қанша салуға дайынсыз</div>
         <input type="number" id="down" min="0" placeholder="5 000 000">
+      </div>
+    </div>
+    <div class="q row">
+      <div>
+        <label class="q-label" for="ownPledge">Бастапқы жарнаға жеке қаражатыңыздың жалпы сомасы, ₸ *</label>
+        <div class="q-hint">Нақты жинақталған/бос қаражат (ақша)</div>
+        <input type="number" id="ownPledge" min="0" placeholder="5 000 000">
+      </div>
+      <div>
+        <label class="q-label" for="ownPledgeSource">Қайдан жиналды / көздері *</label>
+        <div class="q-hint">Жинақ, сыйлық, сату, басқа (қысқаша)</div>
+        <input type="text" id="ownPledgeSource" placeholder="Жинақ шоты, аула / мүлікті сату т.б.">
       </div>
     </div>
   </section>
@@ -553,12 +559,37 @@ input.err,select.err{border-color:var(--red);background:#fdf1ef}
     <div class="s-head"><span class="s-num">VII</span><span class="s-title">Жұмыс және отбасы</span></div>
     <div class="q row">
       <div>
-        <label class="q-label" for="city">Қай қаладансыз? *</label>
-        <input type="text" id="city" placeholder="Алматы қ.">
+        <label class="q-label" for="city">Қала / облыс *</label>
+        <select id="city">
+          <option value="">— таңдаңыз —</option>
+          <option>Астана қ.</option>
+          <option>Алматы қ.</option>
+          <option>Шымкент қ.</option>
+          <option>Ақтөбе қ.</option>
+          <option>Атырау қ.</option>
+          <option>Актау қ.</option>
+          <option>Қарағанды қ.</option>
+          <option>Тараз қ.</option>
+          <option>Өскемен қ.</option>
+          <option>Павлодар қ.</option>
+          <option>Семей қ.</option>
+          <option>Қостанай қ.</option>
+          <option>Қызылорда қ.</option>
+          <option>Түркістан қ.</option>
+          <option>Көкшетау қ.</option>
+          <option>Талдықорған қ.</option>
+          <option>Ақтөбе облысы</option>
+          <option>Алматы облысы</option>
+          <option>Атырау облысы</option>
+          <option>Маңғыстау облысы</option>
+          <option>Қарағанды облысы</option>
+          <option>Шымкент облысы</option>
+          <option>Басқа қала / облыс</option>
+        </select>
       </div>
       <div>
         <label class="q-label" for="reg">Тіркелген мекенжайыңыз? *</label>
-        <input type="text" id="reg" placeholder="Алматы қ., ... к-сі, ... үй">
+        <input type="text" id="reg" placeholder="Қала, көше, үй">
       </div>
     </div>
     <div class="q">
@@ -767,6 +798,7 @@ input.err,select.err{border-color:var(--red);background:#fdf1ef}
   <div class="result-actions">
     <button class="btn-ghost" onclick="window.print()">Баспа / PDF</button>
     <button class="btn-ghost" id="copyBtn">Мәтінді көшіру</button>
+    <button class="btn-ghost" id="waBtn">Whatsapp-қа жіберу</button>
     <button class="btn-solid" id="againBtn">Қайта толтыру</button>
   </div>
 </div>
@@ -844,8 +876,9 @@ addEarner('Я','');
 function progress(){
   const req=[
     $('#fio').value.trim(), $('#phone').value.trim(),
-    price.value, $('#district').value, $('#people').value,
+    price.value, $('#people').value,
     $('#dependents').value!=='', +$('#down').value>=0&&$('#down').value!=='',
+    +$('#ownPledge').value>=0&&$('#ownPledge').value!=='', $('#ownPledgeSource').value.trim(),
     $('input[name=otbasy]:checked'), $('input[name=credit]:checked'),
     $('input[name=delay]:checked'), $('input[name=loans]:checked'),
     $('input[name=own]:checked'),
@@ -871,10 +904,11 @@ function validate(){
   chk($('#fio').value.trim(),'Аты-жөні');
   chk($('#phone').value.trim(),'Телефон');
   chk(+price.value>0,'Пәтер құны');
-  chk($('#district').value,'Аудан');
   chk($('#people').value,'Тұратын адам саны');
   chk($('#dependents').value!=='','Асыраушылар');
   chk($('#down').value!==''&&+$('#down').value>=0,'Бастапқы жарна');
+  chk($('#ownPledge').value!==''&&+$('#ownPledge').value>=0,'Бастапқы жарнаға жеке қаражат сомасы');
+  chk($('#ownPledgeSource').value.trim(),'Қаражат көздері');
   chk($('input[name=otbasy]:checked'),'Отбасы банкіндегі шот');
   chk($('input[name=credit]:checked'),'Несие тарихы');
   chk($('input[name=delay]:checked'),'Просрочки');
@@ -886,7 +920,7 @@ function validate(){
   chk(calcTotal()>0,'Отбасы табысы');
   chk($('input[name=extra]:checked'),'Қосымша табыс');
   if(val('extra')==='Да') chk(+$('#extraSum').value>0,'Қосымша табыс сомасы');
-  chk($('#city').value.trim(),'Қала');
+  chk($('#city').value,'Қала');
   chk($('#reg').value.trim(),'Тіркелген мекенжай');
   chk($('input[name=work]:checked'),'Жұмыс жасайсыз ба');
   if(val('work')==='Да'){
@@ -935,11 +969,10 @@ $('#submitBtn').onclick=()=>{
   const notes=[];
 
   // кредиты, иждивенцы, взнос, доп. доход
-  const debtPay=val('loans')==='Да'?(+$('#loanPay').value||0):0;
-  const debtTotal=val('loans')==='Да'?(+$('#loanTotal').value||0):0;
-  const freeIncome=Math.max(0,income-debtPay);
   const downV=+$('#down').value||0;
-  const downPct=priceV>0?(downV/priceV*100):0;
+  const opV=+$('#ownPledge').value||0, opS=$('#ownPledgeSource').value.trim();
+  if(opV<downV){ w.textContent='Жеке қаражат сомасы бастапқы жарна сомасынан кем болуы мүмкін емес.'; w.classList.add('show'); w.scrollIntoView({behavior:'smooth',block:'center'}); return; }
+  if(opV>=downV && downV>0){ score+=3; notes.push('Бастапқы жарнаға жеке қаражат — '+fmt(opV)+' ₸ ('+(opS||'көрсетілген')+').'); }
   const depRaw=$('#dependents').value;
   const deps=depRaw?Math.min(parseInt(depRaw)||0,5):0;
   const residentsRaw=$('#people').value;
@@ -1047,10 +1080,11 @@ $('#submitBtn').onclick=()=>{
     G('I. Байланыс деректері',[
       ['Аты-жөні',txt('fio')],['Телефон',txt('phone')],['Туған күні',txt('birth')],['E-mail',txt('email')]
     ])+
-    G('II. Пәтер параметрлері',[
-      ['Құн',fmt(priceV)+' ₸'],['Аудан',$('#district').value],
+      G('II. Пәтер параметрлері',[
+      ['Құн',fmt(priceV)+' ₸'],
       ['Тұратын адамдар',$('#people').value],['Асыраушылар',depRaw],
       ['Бастапқы жарна',fmt(downV)+' ₸'+(downPct?' ('+downPct.toFixed(1)+'%)':'')],
+      ['Жеке қаражат на ПВ',fmt(opV)+' ₸'+(opS? ' — '+opS:'')],
       ['Табыс бойынша ориентир (айлық төлем)',fmt(monthlyPay)+' ₸']
     ])+
     G('III. Отбасы банкі',[
@@ -1133,6 +1167,28 @@ $('#copyBtn').onclick=()=>{
   const t=$('.summary').innerText.replace(/\n{3,}/g,'\n\n');
   const head=`Баға: ${$('#scoreNum').textContent}/100 — ${$('#verdict').textContent}\n\n`;
   navigator.clipboard.writeText(head+t).then(()=>{$('#copyBtn').textContent='Көшірілді!';setTimeout(()=>$('#copyBtn').textContent='Мәтінді көшіру',1800);});
+};
+$('#waBtn').onclick=()=>{
+  const priceV2=+price.value, downV2=+$('#down').value||0, opV2=+$('#ownPledge').value||0, opS2=$('#ownPledgeSource').value.trim();
+  const income2=calcTotal(), debtPay2=val('loans')==='Да'?(+$('#loanPay').value||0):0;
+  const freeIncome2=Math.max(0,income2-debtPay2);
+  const monthlyPay2=Math.round(freeIncome2*0.5);
+  const downPct2=priceV2>0?(downV2/priceV2*100):0;
+  const text = `Анкета Отбасы банк
+Қарыз алушы: ${txt('fio')||'—'}
+Телефон: ${txt('phone')||'—'}
+Қала/облыс: ${$('#city').value||'—'}
+
+Пәтер құны: ${fmt(priceV2)} ₸
+Бастапқы жарна: ${fmt(downV2)} ₸ (${downPct2.toFixed(1)}%)
+Жеке қаражат ПВ: ${fmt(opV2)} ₸ (${opS2||'—'})
+
+Отбасы табысы: ${fmt(income2)} ₸/мес
+Несиелік жүктеме: ${fmt(debtPay2)} ₸/мес
+Ұсынылатын айлық төлем (≤50%): ${fmt(monthlyPay2)} ₸
+
+Алдын ала баға: ${$('#scoreNum').textContent}/100 — ${$('#verdict').textContent}`;
+  window.open('https://wa.me/77771594325?text='+encodeURIComponent(text),'_blank');
 };
 
 progress();
