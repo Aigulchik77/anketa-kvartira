@@ -3,7 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Анкета — заявка на приобретение жилья</title>
+<title>Нурсауле · Отбасы банк — анкета</title>
+<meta name="description" content="Нурсауле · Отбасы банк — онлайн-анкета заёмщика: расчёт первоначального взноса, платёжеспособности и предварительная оценка заявки.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Нурсауле · Отбасы банк">
+<meta property="og:title" content="Нурсауле · Отбасы банк — анкета заёмщика">
+<meta property="og:description" content="Заполните анкету за 3 минуты: первоначальный взнос, доход семьи, предварительная оценка и рекомендации.">
+<meta name="theme-color" content="#0e5b45">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;1,6..96,400&family=Commissioner:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -260,7 +266,7 @@ input.err,select.err{border-color:var(--red);background:#fdf1ef}
 <div class="wrap">
 
 <header>
-  <div class="eyebrow">Отбасы банк · заявка на жильё</div>
+  <div class="eyebrow">Нурсауле · Отбасы банк</div>
   <h1>Анкета <em>заёмщика</em></h1>
   <p class="sub">Ответьте на вопросы — в конце вы получите сводку ответов, предварительную оценку платёжеспособности и рекомендацию.</p>
   <a class="lang-link" href="kz.html">Қазақша</a>
@@ -362,6 +368,18 @@ input.err,select.err{border-color:var(--red);background:#fdf1ef}
         <label class="q-label" for="down">Первоначальный взнос, ₸ *</label>
         <div class="q-hint" id="downHint">Сколько готовы внести сейчас</div>
         <input type="number" id="down" min="0" placeholder="5 000 000">
+      </div>
+    </div>
+    <div class="q row">
+      <div>
+        <label class="q-label" for="ownPledge">Сколько личных денег сможете собрать на взнос, ₸ *</label>
+        <div class="q-hint">Реально накопленная / свободная сумма</div>
+        <input type="number" id="ownPledge" min="0" placeholder="5 000 000">
+      </div>
+      <div>
+        <label class="q-label" for="ownPledgeSource">Откуда эти средства *</label>
+        <div class="q-hint">Накопления, подарок, продажа, другое</div>
+        <input type="text" id="ownPledgeSource" placeholder="Накопления, продажа авто и т.п.">
       </div>
     </div>
   </section>
@@ -783,6 +801,7 @@ input.err,select.err{border-color:var(--red);background:#fdf1ef}
   <div class="result-actions">
     <button class="btn-ghost" onclick="window.print()">Печать / PDF</button>
     <button class="btn-ghost" id="copyBtn">Скопировать текст</button>
+    <button class="btn-ghost" id="waBtn">Отправить в WhatsApp</button>
     <button class="btn-solid" id="againBtn">Заполнить заново</button>
   </div>
 </div>
@@ -862,6 +881,7 @@ function progress(){
     $('#fio').value.trim(), $('#phone').value.trim(),
     price.value, $('#city').value, $('#people').value,
     $('#dependents').value!=='', +$('#down').value>=0&&$('#down').value!=='',
+    +$('#ownPledge').value>=0&&$('#ownPledge').value!=='', $('#ownPledgeSource').value.trim(),
     $('input[name=otbasy]:checked'), $('input[name=credit]:checked'),
     $('input[name=delay]:checked'), $('input[name=loans]:checked'),
     $('input[name=own]:checked'),
@@ -891,6 +911,8 @@ function validate(){
   chk($('#people').value,'Число проживающих');
   chk($('#dependents').value!=='','Иждивенцы');
   chk($('#down').value!==''&&+$('#down').value>=0,'Первоначальный взнос');
+  chk($('#ownPledge').value!==''&&+$('#ownPledge').value>=0,'Личные средства на взнос');
+  chk($('#ownPledgeSource').value.trim(),'Источник личных средств');
   chk($('input[name=otbasy]:checked'),'Счёт в Отбасы банке');
   chk($('input[name=credit]:checked'),'Кредитная история');
   chk($('input[name=delay]:checked'),'Просрочки');
@@ -952,7 +974,12 @@ $('#submitBtn').onclick=()=>{
   const debtTotal=val('loans')==='Да'?(+$('#loanTotal').value||0):0;
   const freeIncome=Math.max(0,income-debtPay);
   const downV=+$('#down').value||0;
+  const opV=+$('#ownPledge').value||0, opS=$('#ownPledgeSource').value.trim();
   const downPct=priceV>0?(downV/priceV*100):0;
+  if(opV<downV){
+    const ww=$('#warn'); ww.textContent='Сумма личных средств не может быть меньше первоначального взноса.'; ww.classList.add('show'); ww.scrollIntoView({behavior:'smooth',block:'center'}); return;
+  }
+  if(opV>=downV && downV>0){ score+=3; notes.push('Личные средства на взнос — '+fmt(opV)+' ₸ ('+(opS||'не указан источник')+').'); }
   const depRaw=$('#dependents').value;
   const deps=depRaw?Math.min(parseInt(depRaw)||0,5):0;
   const residentsRaw=$('#people').value;
@@ -1064,6 +1091,7 @@ $('#submitBtn').onclick=()=>{
       ['Стоимость',fmt(priceV)+' ₸'],['Город / область',$('#city').value],
       ['Проживать будет чел.',$('#people').value],['Иждивенцев',depRaw],
       ['Первоначальный взнос',fmt(downV)+' ₸'+(downPct?' ('+downPct.toFixed(1)+'%)':'')],
+      ['Личные средства на взнос',fmt(opV)+' ₸'+(opS?' — '+opS:'')],
       ['Ориентир по доходу (мес. платёж)',fmt(monthlyPay)+' ₸']
     ])+
     G('III. Отбасы банк',[
@@ -1138,6 +1166,27 @@ $('#submitBtn').onclick=()=>{
     else if(s==='unconfigured'){ tg.className='tg-status'; tg.style.display='none'; }
     else { tg.className='tg-status fail'; tg.textContent='Не удалось отправить в Telegram (проверьте интернет)'; }
   });
+};
+$('#waBtn').onclick=()=>{
+  const priceW=+price.value, downW=+$('#down').value||0, opW=+$('#ownPledge').value||0, opSW=$('#ownPledgeSource').value.trim();
+  const incomeW=calcTotal(), debtW=val('loans')==='Да'?(+$('#loanPay').value||0):0;
+  const freeW=Math.max(0,incomeW-debtW), payW=Math.round(freeW*0.5);
+  const pctW=priceW>0?(downW/priceW*100):0;
+  const text=`Анкета · Нурсауле Отбасы банк
+Заёмщик: ${txt('fio')||'—'}
+Телефон: ${txt('phone')||'—'}
+Город/область: ${$('#city').value||'—'}
+
+Стоимость: ${fmt(priceW)} ₸
+Первый взнос: ${fmt(downW)} ₸ (${pctW.toFixed(1)}%)
+Личные средства на взнос: ${fmt(opW)} ₸ (${opSW||'—'})
+
+Доход семьи: ${fmt(incomeW)} ₸/мес
+Платежи по кредитам: ${fmt(debtW)} ₸/мес
+Рекомендуемый платёж (≤50%): ${fmt(payW)} ₸
+
+Оценка: ${$('#scoreNum').textContent}/100 — ${$('#verdict').textContent}`;
+  window.open('https://wa.me/77771594325?text='+encodeURIComponent(text),'_blank');
 };
 
 /* ---- actions ---- */
