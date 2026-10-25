@@ -311,13 +311,32 @@ input.err,select.err{border-color:var(--red);background:#fdf1ef}
     </div>
     <div class="q row">
       <div>
-        <label class="q-label" for="district">Район *</label>
-        <select id="district">
+        <label class="q-label" for="city">Город / область *</label>
+        <select id="city">
           <option value="">— выберите —</option>
-          <option>Алматинский</option><option>Медеуский</option><option>Бостандыкский</option>
-          <option>Нуресалинский / Приморский</option><option>Турксибский</option>
-          <option>Ауэзовский</option><option>Жетысуский</option><option>Наурызбайский</option>
-          <option>Ещёгород / пригород</option><option>Другой город</option>
+          <option>Астана</option>
+          <option>Алматы</option>
+          <option>Шымкент</option>
+          <option>Актобе</option>
+          <option>Атырау</option>
+          <option>Актау</option>
+          <option>Караганда</option>
+          <option>Тараз</option>
+          <option>Усть-Каменогорск</option>
+          <option>Павлодар</option>
+          <option>Семей</option>
+          <option>Костанай</option>
+          <option>Кызылорда</option>
+          <option>Туркестан</option>
+          <option>Кокшетау</option>
+          <option>Талдыкорган</option>
+          <option>Актюбинская область</option>
+          <option>Алматинская область</option>
+          <option>Атырауская область</option>
+          <option>Мангистауская область</option>
+          <option>Карагандинская область</option>
+          <option>Туркестанская область</option>
+          <option>Другой город / область</option>
         </select>
       </div>
       <div>
@@ -553,13 +572,10 @@ input.err,select.err{border-color:var(--red);background:#fdf1ef}
     <div class="s-head"><span class="s-num">VII</span><span class="s-title">Работа и семья</span></div>
     <div class="q row">
       <div>
-        <label class="q-label" for="city">Из какого вы города? *</label>
-        <input type="text" id="city" placeholder="г. Алматы">
-      </div>
-      <div>
         <label class="q-label" for="reg">Где прописка? *</label>
-        <input type="text" id="reg" placeholder="г. Алматы, ул. ..., дом ...">
+        <input type="text" id="reg" placeholder="Город, улица, дом">
       </div>
+      <div></div>
     </div>
     <div class="q">
       <span class="q-label">Работаете ли вы? *</span>
@@ -844,14 +860,14 @@ addEarner('Я','');
 function progress(){
   const req=[
     $('#fio').value.trim(), $('#phone').value.trim(),
-    price.value, $('#district').value, $('#people').value,
+    price.value, $('#city').value, $('#people').value,
     $('#dependents').value!=='', +$('#down').value>=0&&$('#down').value!=='',
     $('input[name=otbasy]:checked'), $('input[name=credit]:checked'),
     $('input[name=delay]:checked'), $('input[name=loans]:checked'),
     $('input[name=own]:checked'),
     $('input[name=pledge]:checked'), $('input[name=benefit]:checked'),
     calcTotal()>0, $('input[name=extra]:checked'),
-    $('#city').value.trim(), $('#reg').value.trim(),
+    $('#reg').value.trim(),
     $('input[name=work]:checked'), $('input[name=zag]:checked'),
     $('#kids').value!=='', $('#kids18').value!=='',
     $('input[name=queue]:checked'), $('input[name=ccard]:checked'),
@@ -871,7 +887,7 @@ function validate(){
   chk($('#fio').value.trim(),'ФИО');
   chk($('#phone').value.trim(),'Телефон');
   chk(+price.value>0,'Стоимость квартиры');
-  chk($('#district').value,'Район');
+  chk($('#city').value,'Город');
   chk($('#people').value,'Число проживающих');
   chk($('#dependents').value!=='','Иждивенцы');
   chk($('#down').value!==''&&+$('#down').value>=0,'Первоначальный взнос');
@@ -886,7 +902,6 @@ function validate(){
   chk(calcTotal()>0,'Доход семьи');
   chk($('input[name=extra]:checked'),'Дополнительный доход');
   if(val('extra')==='Да') chk(+$('#extraSum').value>0,'Сумма доп. дохода');
-  chk($('#city').value.trim(),'Город');
   chk($('#reg').value.trim(),'Прописка');
   chk($('input[name=work]:checked'),'Работаете или нет');
   if(val('work')==='Да'){
@@ -1046,7 +1061,7 @@ $('#submitBtn').onclick=()=>{
       ['ФИО',txt('fio')],['Телефон',txt('phone')],['Дата рождения',txt('birth')],['E-mail',txt('email')]
     ])+
     G('II. Параметры квартиры',[
-      ['Стоимость',fmt(priceV)+' ₸'],['Район',$('#district').value],
+      ['Стоимость',fmt(priceV)+' ₸'],['Город / область',$('#city').value],
       ['Проживать будет чел.',$('#people').value],['Иждивенцев',depRaw],
       ['Первоначальный взнос',fmt(downV)+' ₸'+(downPct?' ('+downPct.toFixed(1)+'%)':'')],
       ['Ориентир по доходу (мес. платёж)',fmt(monthlyPay)+' ₸']
@@ -1079,7 +1094,7 @@ $('#submitBtn').onclick=()=>{
       ['Доход на человека',fmt(Math.round(perCapita))+' ₸']
     ])+
     G('VII. Работа и семья',[
-      ['Город',txt('city')],['Прописка',txt('reg')],
+      ['Прописка',txt('reg')],
       ['Работаете',val('work')],
       ...(val('work')==='Да'?[['Место работы',txt('jobPlace')],['Пенсионные отчисления',val('pension')]]:[]),
       ['ЗАГС',val('zag')],
@@ -1111,7 +1126,7 @@ $('#submitBtn').onclick=()=>{
     +'Оценка: '+score+'/100 — '+verdict+'\n'
     +'ФИО: '+txt('fio')+'\n'
     +'Телефон: '+txt('phone')+'\n'
-    +'Квартира: '+fmt(priceV)+' ₸, '+$('#district').value+'\n'
+    +'Квартира: '+fmt(priceV)+' ₸, '+$('#city').value+'\n'
     +'Взнос: '+fmt(downV)+' ₸ ('+downPct.toFixed(1)+'%)\n'
     +'Доход семьи: '+fmt(income)+' ₸/мес\n'
     +'Платежи по кредитам: '+fmt(debtPay)+' ₸/мес\n'
